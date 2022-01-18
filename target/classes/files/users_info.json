@@ -1,0 +1,40 @@
+{
+  "user_list": [
+  	{
+  		"user_id": "a27042907f0e701c742edb30679ea232" ,
+  		"name": "Mario",
+		"surname": "Rossi",
+		"username": "redmario",
+		"city": "Pisa",
+		"postal_code": "57100",
+		"email": "redmario@mail.com",
+  		"description": "Hi, my name is mario and i love pets. Searching for petsitters . . . ",
+		"petsitter": false,
+		"male": true
+  	},
+  	{
+		"user_id": "1acccfd6017be27484cdd691c9b05153" ,
+		"name": "Mario",
+		"surname": "Bianchi",
+		"username": "whitemario",
+		"city": "Pisa",
+		"postal_code": "57100",
+		"email": "whitemario@mail.com",
+		"description": "Hi the new petsitter is here! Whoa!",
+		"petsitter": true,
+		"male": true
+  	},
+	  {
+		  "user_id": "d4e8e2f30df4d47603ffb10ee88bad05",
+		  "name": "Maria",
+		  "surname": "Rosa",
+		  "username": "pinkmaria",
+		  "city": "Pisa",
+		  "postal_code": "57100",
+		  "email": "pinkmaria@mail.com",
+		  "description": "Hi, i have two dogs named Jacob and Esau and my cat is named Silvio",
+		  "petsitter": false,
+		  "male": false
+	  }
+  ]
+}

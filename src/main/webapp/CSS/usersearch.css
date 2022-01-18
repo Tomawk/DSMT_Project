@@ -1,0 +1,181 @@
+body {
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.topnav{
+    position: fixed;
+    top: 0;
+    left: -5%;
+    width: 105%;
+    height: 4.09vw;
+    z-index: 300;
+    background-color: lightskyblue;
+    overflow: hidden;
+}
+
+.topnav img{
+    position: absolute;
+    width: 15%;
+    left: 10vw;
+    top: 0.2vw;
+}
+.topnav table{
+    position: relative;
+    left: 70vw;
+}
+
+.topnav td{
+    position: relative;
+    right: 1vw;
+}
+
+.topnav td a{
+    position:relative;
+    top: 0.95vw;
+    color: #f2f2f2;
+    text-align: center;
+    font-family: 'Franklin Gothic Book', sans-serif;
+    padding: 1.2vw 1.1vw;
+    text-decoration: none;
+    font-size: 1.5VW;
+    height: 4vw;
+}
+
+.topnav td a:hover {
+    background-color: white;
+    color: lightskyblue;
+    cursor: pointer;
+}
+
+.rightnav {
+    position: fixed;
+    right: 0.5vw;
+    top: 6vw;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 5px;
+    z-index: 300;
+    width: 3vw;
+    height: 9vw;
+}
+
+.rightnav table{
+    margin: auto;
+}
+
+.rightnav table td{
+    width: 2.5vw;
+    height: 2.5vw;
+    position: relative;
+    top: 0.2vw;
+}
+
+#instagram{
+    width: 100%;
+    background-image: url('../images/instagram_icon_black.png');
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#instagram:hover{
+    cursor: pointer;
+    background-image: url('../images/instagram_icon_color.png');
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#facebook{
+    width: 100%;
+    background-image: url('../images/facebook_icon_black.png');
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#facebook:hover{
+    cursor: pointer;
+    background-image: url('../images/facebook_icon_color.png');
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#google{
+    background-image: url('../images/google_icon_black.png');
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+#google:hover{
+    cursor: pointer;
+    background-image: url('../images/google_icon_color.png');
+    background-size: cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+.search_infos{
+    position: relative;
+    left: 5%;
+    top: 4vw;
+    border: solid;
+    border-color: red;
+    width: 90%;
+    height: 2vw;
+}
+
+.search_infos p{
+    position: relative;
+    top: -0.75vw;
+    text-align: left;
+    font-size: 1.1vw;
+    font-family: Raleway, sans-serif;
+    font-style: italic;
+}
+
+.search_results{
+    position: relative;
+    top: 4.2vw;
+    left: 5%;
+    border: solid;
+    border-color: blue;
+    width: 90%;
+    height: 50vw;
+}
+
+.search_row{
+    position: relative;
+    top: 0.2vw;
+    left: 5%;
+    border: 3px solid;
+    border-color: darkgrey;
+    width: 90%;
+    height: 5vw;
+
+}
+
+#username{
+    position: relative;
+    left: 10%;
+    top:-5.8vw;
+    width: 8vw;
+    border: solid red;
+    height: 4vw;
+    font-size: 1.1vw;
+    font-family: Raleway, sans-serif;
+}
+
+#description{
+    position: relative;
+    left: 20%;
+    top:-11.12vw;
+    border: solid turquoise;
+    height: 4vw;
+    width: 40vw;
+    text-align: justify;
+    font-size: 1.1vw;
+    font-family: Raleway, sans-serif;
+}

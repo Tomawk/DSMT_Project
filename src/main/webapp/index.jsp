@@ -14,7 +14,7 @@
         <tr>
             <td><a onclick="scrollup()">Home</a></td>
             <td><a href="#hr1">Pets</a></td>
-            <td><a href="#hr2">My Profile</a></td>
+            <td><a href="./pages/usersearch.html">My Profile</a></td>
             <td><a href="#contatti">Reviews</a></td>
         </tr>
     </table>
