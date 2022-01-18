@@ -6,6 +6,8 @@ import it.unipi.dsmt.dto.UserPagesDTO;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserPagesUtil {
@@ -28,6 +30,21 @@ public class UserPagesUtil {
         }
         return null;
     }
+
+
+    //display both petsitters and petowners
+    public static ArrayList<UserDTO> filter_list(String city, String pet){
+        ArrayList<UserDTO> filtered_list = new ArrayList<>();
+        for(UserDTO item:user_list.getUser_list()){
+            if(item.getCity().equals(city)){
+                for(String pet_selected: item.getPets()){
+                    if(pet_selected.equals(pet)) filtered_list.add(item);
+                }
+            }
+        }
+        return filtered_list;
+    }
+
 
     private static UserPagesDTO load(){
         String path = "/files/users_info.json";

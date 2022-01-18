@@ -1,5 +1,7 @@
 package it.unipi.dsmt.dto;
 
+import java.util.List;
+
 public class UserDTO {
 
     private String user_id;
@@ -10,6 +12,7 @@ public class UserDTO {
     public String city;
     public String postal_code;
     public String description;
+    public List<String> pets;
     public boolean petsitter;
     public boolean male;
 
@@ -91,5 +94,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<String> getPets() {
+        return pets;
+    }
+
+    public void setPets(List pets) {
+        this.pets = pets;
     }
 }

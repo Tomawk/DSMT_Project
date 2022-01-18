@@ -10,7 +10,8 @@
 		"email": "redmario@mail.com",
   		"description": "Hi, my name is mario and i love pets. Searching for petsitters . . . ",
 		"petsitter": false,
-		"male": true
+		"male": true,
+		"pets": ["dog","cat"]
   	},
   	{
 		"user_id": "1acccfd6017be27484cdd691c9b05153" ,
@@ -22,7 +23,8 @@
 		"email": "whitemario@mail.com",
 		"description": "Hi the new petsitter is here! Whoa!",
 		"petsitter": true,
-		"male": true
+		"male": true,
+		"pets": ["dog","cat","rabbit","hamster"]
   	},
 	  {
 		  "user_id": "d4e8e2f30df4d47603ffb10ee88bad05",
@@ -34,7 +36,60 @@
 		  "email": "pinkmaria@mail.com",
 		  "description": "Hi, i have two dogs named Jacob and Esau and my cat is named Silvio",
 		  "petsitter": false,
-		  "male": false
+		  "male": false,
+		  "pets": ["dog,cat"]
+	  },
+	  {
+		  "user_id": "f29f64d14ee1748dc35ad3888cfbe824",
+		  "name": "Jean",
+		  "surname": "Kirstein",
+		  "username": "jean_horse",
+		  "city": "Pisa",
+		  "postal_code": "57100",
+		  "email": "jeanaot@mail.com",
+		  "description": "Hi, my name is Jean and i have three dogs. I'm searching for a petsitter for my next holiday!",
+		  "petsitter": false,
+		  "male": true,
+		  "pets": ["dog"]
+	  },
+	  {
+		  "user_id": "9ab4207683458be9e737df0a2c15eb93",
+		  "name": "Jessica",
+		  "surname": "Rabbit",
+		  "username": "jessyrabbit",
+		  "city": "Florence",
+		  "postal_code": "27381",
+		  "email": "jessyca@mail.com",
+		  "description": "Hi, i love rabbits! Always available, contact me!",
+		  "petsitter": true,
+		  "male": false,
+		  "pets": ["rabbit","cat","dog"]
+	  },
+	  {
+		  "user_id": "b353d57b1e87dc37fd2302831639ac52",
+		  "name": "Jon",
+		  "surname": "Snow",
+		  "username": "hamsterlover",
+		  "city": "Florence",
+		  "postal_code": "27283",
+		  "email": "jonsnow@mail.com",
+		  "description": "Hi, i only can take care of hamster! Do not contact me if you have other animals!",
+		  "petsitter": true,
+		  "male": true,
+		  "pets": ["hamster"]
+	  },
+	  {
+		  "user_id": "11b1fd2d481a638a0d6b8d38f0d1732e",
+		  "name": "Tommaso",
+		  "surname": "Giorgi",
+		  "username": "Tomawk",
+		  "city": "Livorno",
+		  "postal_code": "57128",
+		  "email": "t.giorgi@studenti.unipi.it",
+		  "description": "Hi, i only have a dog, searching for a pet sitter!",
+		  "petsitter": false,
+		  "male": true,
+		  "pets": ["dog"]
 	  }
   ]
 }

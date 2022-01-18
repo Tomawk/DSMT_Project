@@ -48,7 +48,7 @@
             <input type="text" placeholder="Location" id="location">
         </div>
         <div class="confirmation_search">
-            <button type="submit">Search Now</button>
+            <button type="submit" onclick="submitsearch()">Search Now</button>
         </div>
     </div>
 </div>
@@ -71,5 +71,13 @@
         </div>
     </div>
 </div>
+<script>
+    function submitsearch() {
+        var pets_selection = document.getElementById("pets");
+        var pet_searched = pets_selection.value;
+        var city_searched = document.getElementById("location").value;
+        window.location.href = "http://localhost:8080/HereThePaw_DSMT_Project_war/search_user?city=" + city_searched + "&pet=" + pet_searched;
+    }
+</script>
 </body>
 </html>
