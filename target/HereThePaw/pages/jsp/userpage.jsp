@@ -1,5 +1,5 @@
-<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
-<%@ page import="it.unipi.dsmt.utils.UserPagesUtil" %>
+<%@ page import="it.unipi.dsmt.dto.Users" %>
+<%@ page import="it.unipi.dsmt.utils.UsersUtil" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,8 @@
 <body>
 <%
     String requested_user = request.getParameter("username");
-    UserDTO target_user = UserPagesUtil.byUsername(requested_user);
+    UsersUtil usersUtil = new UsersUtil(requested_user);
+    Users target_user = usersUtil.getUserDTO();
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">

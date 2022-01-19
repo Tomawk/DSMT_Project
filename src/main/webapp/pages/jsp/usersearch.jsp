@@ -1,6 +1,6 @@
-<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
+<%@ page import="it.unipi.dsmt.dto.Users" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unipi.dsmt.utils.UserPagesUtil" %>
+<%@ page import="it.unipi.dsmt.utils.UsersUtil" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -15,8 +15,8 @@
 <%
         String city_searched = request.getParameter("city");
         String pet_searched = request.getParameter("pet");
-
-        ArrayList<UserDTO> filtered_list = UserPagesUtil.filter_list(city_searched,pet_searched);
+        UsersUtil usersUtil = new UsersUtil(city_searched,pet_searched);
+        ArrayList<Users> filtered_list = usersUtil.getUserlist();
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
@@ -44,7 +44,7 @@
 </aside>
 <div class="search_infos"><p><%= filtered_list.size()%> result found with City: <strong>"<%=city_searched%>"</strong> & Pet = <strong>"<%= pet_searched%>"</strong></p></div>
 <div class="search_results">
-<% for(UserDTO item:filtered_list){ %>
+<% for(Users item:filtered_list){ %>
         <div class="first_search_row">
         <p class="username">
             <i class="fas fa-dog"></i><strong><%= item.getUsername()%>: </strong>
