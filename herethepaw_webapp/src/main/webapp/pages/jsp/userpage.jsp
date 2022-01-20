@@ -1,5 +1,5 @@
-<%@ page import="it.unipi.dsmt.dto.Users" %>
-<%@ page import="it.unipi.dsmt.utils.UsersUtil" %>
+<%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
+<%@ page import="it.unipi.dsmt.UserDTO" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,14 +12,14 @@
 <body>
 <%
     String requested_user = request.getParameter("username");
-    UsersUtil usersUtil = new UsersUtil(requested_user);
-    Users target_user = usersUtil.getUserDTO();
+    UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
+    UserDTO target_user = userRemoteEJB.getUser(requested_user);
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
     <table>
         <tr>
-            <td><a href="/herethepaw_webapp_war">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
+            <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
             <td><a href="#hr1">Pets</a></td>
             <td><a href="#hr2">My Profile</a></td>
             <td><a href="#contatti">Reviews</a></td>

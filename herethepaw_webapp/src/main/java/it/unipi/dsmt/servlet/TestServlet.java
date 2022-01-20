@@ -6,6 +6,8 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+//TEST SERVLET -- NON SERVE A NIENTE MA MAGARI CI PUO' TORNARE COMODO RECUPERARE DEL CODICE
+
 @WebServlet(name = "TestServlet", value = "/TestServlet")
 public class TestServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

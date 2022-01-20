@@ -1,6 +1,6 @@
-<%@ page import="it.unipi.dsmt.dto.Users" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unipi.dsmt.utils.UsersUtil" %>
+<%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
+<%@ page import="it.unipi.dsmt.UserDTO" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -15,14 +15,14 @@
 <%
         String city_searched = request.getParameter("city");
         String pet_searched = request.getParameter("pet");
-        UsersUtil usersUtil = new UsersUtil(city_searched,pet_searched);
-        ArrayList<Users> filtered_list = usersUtil.getUserlist();
+        UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
+        ArrayList<UserDTO> filtered_list = userRemoteEJB.getUserList(city_searched,pet_searched);
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
     <table>
         <tr>
-            <td><a href="/herethepaw_webapp_war">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
+            <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
             <td><a href="#hr1">Pets</a></td>
             <td><a href="#hr2">My Profile</a></td>
             <td><a href="#contatti">Reviews</a></td>
@@ -44,7 +44,7 @@
 </aside>
 <div class="search_infos"><p><%= filtered_list.size()%> result found with City: <strong>"<%=city_searched%>"</strong> & Pet = <strong>"<%= pet_searched%>"</strong></p></div>
 <div class="search_results">
-<% for(Users item:filtered_list){ %>
+<% for(UserDTO item:filtered_list){ %>
         <div class="first_search_row">
         <p class="username">
             <i class="fas fa-dog"></i><strong><%= item.getUsername()%>: </strong>
