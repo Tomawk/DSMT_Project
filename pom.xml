@@ -10,9 +10,7 @@
   <modules>
     <module>ejb-impl</module>
     <module>ejb-interfaces</module>
-    <module>ejb-client</module>
     <module>herethepaw_webapp</module>
-    <module>ejb-client</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -48,6 +46,12 @@
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.17</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>javax.ejb-api</artifactId>
+      <version>3.2.2</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 

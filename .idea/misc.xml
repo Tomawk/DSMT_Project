@@ -8,15 +8,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-      </list>
-    </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/ejb-client/pom.xml" />
         <option value="$PROJECT_DIR$/ejb-impl/pom.xml" />
         <option value="$PROJECT_DIR$/ejb-interfaces/pom.xml" />
-        <option value="$PROJECT_DIR$/webapp/pom.xml" />
-      </set>
+        <option value="$PROJECT_DIR$/ejb-client/pom.xml" />
+      </list>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
