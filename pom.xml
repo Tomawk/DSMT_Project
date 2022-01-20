@@ -7,7 +7,14 @@
   <groupId>it.unipi.dsmt</groupId>
   <artifactId>HereThePaw_DSMT_Project</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <packaging>war</packaging>
+  <modules>
+    <module>ejb-impl</module>
+    <module>ejb-interfaces</module>
+    <module>ejb-client</module>
+    <module>herethepaw_webapp</module>
+    <module>ejb-client</module>
+  </modules>
+  <packaging>pom</packaging>
 
   <name>HereThePaw Webapp</name>
   <!-- FIXME change it to the project's website -->
