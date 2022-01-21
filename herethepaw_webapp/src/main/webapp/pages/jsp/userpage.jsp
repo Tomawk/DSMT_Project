@@ -1,5 +1,8 @@
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
-<%@ page import="it.unipi.dsmt.UserDTO" %>
+<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
+<%@ page import="it.unipi.dsmt.ejb.ReviewRemoteEJB" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.unipi.dsmt.dto.ReviewDTO" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +17,8 @@
     String requested_user = request.getParameter("username");
     UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
     UserDTO target_user = userRemoteEJB.getUser(requested_user);
+    ReviewRemoteEJB reviewRemoteEJB = new ReviewRemoteEJB();
+    ArrayList<ReviewDTO> user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
@@ -59,6 +64,16 @@
     <p id= "citta"><strong>City: </strong><%=target_user.getCity()%></p>
     <p id= "cap"><strong>ZIP Code: </strong><%=target_user.getPostal_code()%></p>
     <p id= "description">"<%=target_user.getDescription()%>"</p>
+
+    <div class="review_results">
+        <% for(ReviewDTO item:user_reviews){ %>
+            <p class="review_text">
+                <i class="fas fa-dog"></i><strong><%= item.getOwnerUsername()%>: </strong> <%=item.getText()%>
+            </p>
+        <% } %>
+    </div>
 </div>
+
+
 </body>
 </html>

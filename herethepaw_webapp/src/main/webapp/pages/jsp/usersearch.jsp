@@ -1,6 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
-<%@ page import="it.unipi.dsmt.UserDTO" %>
+<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -17,6 +17,8 @@
         String pet_searched = request.getParameter("pet");
         UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
         ArrayList<UserDTO> filtered_list = userRemoteEJB.getUserList(city_searched,pet_searched);
+        if(city_searched.equals(""))
+            city_searched = "All";
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
