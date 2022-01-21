@@ -67,6 +67,7 @@
 
     <div class="review_results">
         <% for(ReviewDTO item:user_reviews){ %>
+        <p><%=item.getTimestamp()%></p>
             <p class="review_text">
                 <i class="fas fa-dog"></i><strong><%= item.getOwnerUsername()%>: </strong> <%=item.getText()%>
             </p>
