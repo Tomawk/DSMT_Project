@@ -34,7 +34,7 @@ public class ReviewRemoteEJB implements ReviewRemote {
         ResultSet rs = stmt.executeQuery("select * from review r inner join users u1 inner join users u2 where r.pet_sitter = " +
                 "u1.user_id AND r.owner = u2.user_id AND u1.username='" +petSitter + "' "); //Retrieve all review about this pet sitter
         while (rs.next()) {
-            ReviewDTO reviewDTO = new ReviewDTO(rs.getInt(1),rs.getString(2), rs.getString(19), rs.getString(3),
+            ReviewDTO reviewDTO = new ReviewDTO(rs.getInt(1),rs.getString(2), rs.getString(20), rs.getString(3),
                     rs.getString(4), rs.getInt(5));
             returned_list.add(reviewDTO);
         }
