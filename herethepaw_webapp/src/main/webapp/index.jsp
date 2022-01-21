@@ -45,7 +45,7 @@
         </div>
         <div class="location_search">
             <h2><i class="fas fa-search"></i> Where</h2>
-            <input type="text" placeholder="Location" id="location" required>
+            <input type="text" placeholder="Location" id="location">
         </div>
         <div class="confirmation_search">
             <button type="submit" onclick="submitsearch()">Search Now</button>

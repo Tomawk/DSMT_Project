@@ -29,21 +29,21 @@ public class UserRemoteEJB implements UserRemote {
                 +username+"'");
         while (rs.next()){
             ArrayList<String> pets = new ArrayList<String>();
-            if(rs.getBoolean(12) == true){
+            if(rs.getBoolean(13) == true){
                 pets.add("dog");
             }
-            if(rs.getBoolean(13) == true){
+            if(rs.getBoolean(14) == true){
                 pets.add("cat");
             }
-            if(rs.getBoolean(14) == true){
+            if(rs.getBoolean(15) == true){
                 pets.add("rabbit");
             }
-            if(rs.getBoolean(15) == true){
+            if(rs.getBoolean(16) == true){
                 pets.add("hamster");
             }
             returned_user = new UserDTO(rs.getString(1),rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                    rs.getString(8),pets,"temp",rs.getBoolean(9),rs.getBoolean(10));
+                    rs.getString(8),pets,rs.getString(11),rs.getBoolean(9),rs.getBoolean(10));
         }
         return returned_user;
     }
@@ -57,21 +57,21 @@ public class UserRemoteEJB implements UserRemote {
                 +city + "'AND " +  pet +"= TRUE"); //Retrieve all users with that city
         while (rs.next()) {
             ArrayList<String> pets = new ArrayList<String>();
-            if(rs.getBoolean(12) == true){
+            if(rs.getBoolean(13) == true){
                 pets.add("dog");
             }
-            if(rs.getBoolean(13) == true){
+            if(rs.getBoolean(14) == true){
                 pets.add("cat");
             }
-            if(rs.getBoolean(14) == true){
+            if(rs.getBoolean(15) == true){
                 pets.add("rabbit");
             }
-            if(rs.getBoolean(15) == true){
+            if(rs.getBoolean(16) == true){
                 pets.add("hamster");
             }
             UserDTO userDTO = new UserDTO(rs.getString(1),rs.getString(2), rs.getString(3),
                     rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                    rs.getString(8),pets,"temp",rs.getBoolean(9),rs.getBoolean(10));
+                    rs.getString(8),pets,rs.getString(11),rs.getBoolean(9),rs.getBoolean(10));
             returned_list.add(userDTO);
         }
         return returned_list;
