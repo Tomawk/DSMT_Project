@@ -129,18 +129,6 @@ body {
     box-shadow: 9px 10px 34px 6px rgba(0,0,0,0.7);
 }
 
-#center_div #intestation{
-    font-family: Raleway, sans-serif;
-    text-align: center;
-    color: #ff0000;
-    font-size: 1.2vw;
-}
-
-#center_div #intestation a:visited{
-    color: #ff0000;
-    font-size: 1.2vw;
-}
-
 .imgdiv{
     text-align: center;
     width: 100%;
@@ -151,7 +139,7 @@ body {
 img.avatar {
     width: 50%;
     position: relative;
-    top: 4vw;
+    top: 5vw;
 
 }
 

@@ -1,3 +1,4 @@
+<%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,14 +9,26 @@
     <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<%/*
+    String username_ = request.getParameter("username");
+    String password_ = request.getParameter("password");
+    UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
+    userRemoteEJB.loginUser(username_,password_);*/
+    UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
+%>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
     <table>
         <tr>
             <td><a onclick="scrollup()">Home</a></td>
-            <td><a href="#hr1">Pets</a></td>
-            <td><a href="pages/login.html">My Profile</a></td>
-            <td><a href="#contatti">Reviews</a></td>
+
+            <% if(userRemoteEJB.getLogged_user() != null){ %>
+                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+                <td><a href="logout">Logout</a></td>
+            <% } else {%>
+                 <td><a href="pages/jsp/login.jsp">Login</a></td>
+            <%} %>
+            <td><a href="pages/jsp/login.jsp">Reviews</a></td>
         </tr>
     </table>
 </nav>

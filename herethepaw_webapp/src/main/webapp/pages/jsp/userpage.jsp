@@ -25,8 +25,12 @@
     <table>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <td><a href="#hr1">Pets</a></td>
-            <td><a href="#hr2">My Profile</a></td>
+            <% if(userRemoteEJB.getLogged_user() != null) { %>
+            <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <td><a href="logout">Logout</a></td>
+            <% } else { %>
+            <td><a href="pages/jsp/login.jsp">Login</a></td>
+            <% } %>
             <td><a href="#contatti">Reviews</a></td>
         </tr>
     </table>

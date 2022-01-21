@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class UserRemoteEJB implements UserRemote {
 
     private static DataSource dataSource = null;
+    private static UserDTO logged_user = null;
 
     public UserRemoteEJB() throws NamingException {
         Context ctx = new InitialContext();
@@ -85,4 +86,40 @@ public class UserRemoteEJB implements UserRemote {
         return returned_list;
     }
 
+    @Override
+    public void loginUser (String username, String password) throws SQLException {
+        //UserDTO return_user = null;
+        Connection con = dataSource.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select * from users INNER JOIN pets_user pu on users.user_id = pu.user_id where username='"
+                + username + "'AND password='" + password + "'");
+        while(rs.next()){
+            ArrayList<String> pets = new ArrayList<String>();
+            if(rs.getBoolean(13) == true){
+                pets.add("dog");
+            }
+            if(rs.getBoolean(14) == true){
+                pets.add("cat");
+            }
+            if(rs.getBoolean(15) == true){
+                pets.add("rabbit");
+            }
+            if(rs.getBoolean(16) == true){
+                pets.add("hamster");
+            }
+            logged_user = new UserDTO(rs.getString(1),rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
+                    rs.getString(8),pets,rs.getString(11),rs.getBoolean(9),rs.getBoolean(10));
+        }
+        return;
+        //return return_user;
+    }
+
+    public static UserDTO getLogged_user() {
+        return logged_user;
+    }
+
+    public static void setLogged_user(UserDTO logged_user) {
+        UserRemoteEJB.logged_user = logged_user;
+    }
 }
