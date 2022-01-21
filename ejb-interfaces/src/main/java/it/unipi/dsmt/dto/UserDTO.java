@@ -125,4 +125,22 @@ public class UserDTO implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "user_id='" + user_id + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", city='" + city + '\'' +
+                ", postal_code='" + postal_code + '\'' +
+                ", description='" + description + '\'' +
+                ", pets=" + pets +
+                ", password='" + password + '\'' +
+                ", petsitter=" + petsitter +
+                ", male=" + male +
+                '}';
+    }
 }
