@@ -1,7 +1,7 @@
 package it.unipi.dsmt.ejb;
 
-import it.unipi.dsmt.UserDTO;
-import it.unipi.dsmt.UserRemote;
+import it.unipi.dsmt.dto.UserDTO;
+import it.unipi.dsmt.interfaces.UserRemote;
 
 import javax.ejb.*;
 
@@ -53,8 +53,16 @@ public class UserRemoteEJB implements UserRemote {
         ArrayList<UserDTO> returned_list = new ArrayList<UserDTO>();
         Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from users INNER JOIN pets_user pu on users.user_id = pu.user_id where city='"
-                +city + "'AND " +  pet +"= TRUE"); //Retrieve all users with that city
+        ResultSet rs = null;
+        if(city.equals("")){
+            rs = stmt.executeQuery("select * from users INNER JOIN pets_user pu on users.user_id = pu.user_id where "
+                    +pet +"= TRUE"); //Retrieve all users with that pet in all cities
+        }
+        else{
+            rs = stmt.executeQuery("select * from users INNER JOIN pets_user pu on users.user_id = pu.user_id where city='"
+                    +city + "'AND " +  pet +"= TRUE"); //Retrieve all users with that city
+        }
+
         while (rs.next()) {
             ArrayList<String> pets = new ArrayList<String>();
             if(rs.getBoolean(13) == true){
