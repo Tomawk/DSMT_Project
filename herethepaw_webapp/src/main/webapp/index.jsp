@@ -9,11 +9,7 @@
     <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<%/*
-    String username_ = request.getParameter("username");
-    String password_ = request.getParameter("password");
-    UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
-    userRemoteEJB.loginUser(username_,password_);*/
+<%
     UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
 %>
 <nav class="topnav">
@@ -23,7 +19,7 @@
             <td><a onclick="scrollup()">Home</a></td>
 
             <% if(userRemoteEJB.getLogged_user() != null){ %>
-                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
             <% } else {%>
                  <td><a href="pages/jsp/login.jsp">Login</a></td>
@@ -90,6 +86,9 @@
         var pet_searched = pets_selection.value;
         var city_searched = document.getElementById("location").value;
         window.location.href = "search_user?city=" + city_searched + "&pet=" + pet_searched;
+    }
+    function scrollup() {
+        window.scrollTo(0,0);
     }
 </script>
 </body>
