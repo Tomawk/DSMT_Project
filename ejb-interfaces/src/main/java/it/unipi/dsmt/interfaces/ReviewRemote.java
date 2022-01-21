@@ -10,4 +10,7 @@ import java.util.ArrayList;
 @Remote
 public interface ReviewRemote {
     public ArrayList<ReviewDTO> getPetSitterReviewList(String petSitter) throws SQLException;
+    void insertReview(String owner, String pet_sitter, String text, int rating) throws SQLException;
+
+    void deleteReview(int reviewId) throws SQLException;
 }

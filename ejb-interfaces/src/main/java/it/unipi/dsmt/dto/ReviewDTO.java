@@ -1,6 +1,7 @@
 package it.unipi.dsmt.dto;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class ReviewDTO implements Serializable {
     private int review_id;
@@ -9,14 +10,24 @@ public class ReviewDTO implements Serializable {
     public String pet_sitter;
     public String text;
     public int rating;
+    public Timestamp timestamp;
 
-    public ReviewDTO(int review_id, String owner, String owner_username, String pet_sitter, String text, int rating) {
+    public ReviewDTO(int review_id, String owner, String owner_username, String pet_sitter, String text, int rating, Timestamp timestamp) {
         this.review_id = review_id;
         this.owner = owner;
         this.ownerUsername = owner_username;
         this.pet_sitter = pet_sitter;
         this.text = text;
         this.rating = rating;
+        this.timestamp = timestamp;
+    }
+
+    public Timestamp getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Timestamp timestamp) {
+        this.timestamp = timestamp;
     }
 
     public int getReview_id() {
@@ -76,6 +87,7 @@ public class ReviewDTO implements Serializable {
                 ", pet_sitter='" + pet_sitter + '\'' +
                 ", text='" + text + '\'' +
                 ", rating=" + rating +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }
