@@ -14,7 +14,7 @@
         <tr>
             <td><a onclick="scrollup()">Home</a></td>
             <td><a href="#hr1">Pets</a></td>
-            <td><a href="pages/jsp">My Profile</a></td>
+            <td><a href="pages/login.html">My Profile</a></td>
             <td><a href="#contatti">Reviews</a></td>
         </tr>
     </table>
@@ -45,7 +45,7 @@
         </div>
         <div class="location_search">
             <h2><i class="fas fa-search"></i> Where</h2>
-            <input type="text" placeholder="Location" id="location">
+            <input type="text" placeholder="Location" id="location" required>
         </div>
         <div class="confirmation_search">
             <button type="submit" onclick="submitsearch()">Search Now</button>
