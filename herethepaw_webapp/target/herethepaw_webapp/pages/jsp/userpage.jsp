@@ -44,7 +44,7 @@
         </tr>
     </table>
 </aside>
-<div id="center_div">
+<div id="profile_div">
     <div id="image">
         <% if(target_user.isMale()){ %>
             <img src="images/avatar_male.png" alt="avatar">
@@ -65,14 +65,17 @@
     <p id= "cap"><strong>ZIP Code: </strong><%=target_user.getPostal_code()%></p>
     <p id= "description">"<%=target_user.getDescription()%>"</p>
 
-    <div class="review_results">
-        <% for(ReviewDTO item:user_reviews){ %>
-        <p><%=item.getTimestamp()%></p>
-            <p class="review_text">
-                <i class="fas fa-dog"></i><strong><%= item.getOwnerUsername()%>: </strong> <%=item.getText()%>
-            </p>
-        <% } %>
-    </div>
+
+</div>
+<div id="review_div">
+    <% for(ReviewDTO item:user_reviews){ %>
+
+    <p class="review_text">
+        <i class="fas fa-dog"></i><strong><%= item.getOwnerUsername()%>: </strong> <%=item.getText()%>
+        <br>
+        <i><%=item.getTimestamp()%></i>
+    </p>
+    <% } %>
 </div>
 
 

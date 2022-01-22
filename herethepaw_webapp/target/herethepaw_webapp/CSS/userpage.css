@@ -117,17 +117,42 @@ body {
     background-position: center center;
 }
 
-#center_div {
+#profile_div {
     position:absolute;
-    left:50%;
-    top:50%;
+    left: 5%;
     width:  40vw;
     min-height: 38vw;
     font-family: Raleway, sans-serif;
-    margin-left:-20vw; /* -1/2 width */
-    margin-top: -17vw; /* -1/2 height */
+    margin-top: 7.5%; /* -1/2 height */
     border: 2px solid deepskyblue;
     background-color: whitesmoke;
+    display: inline-block;
+}
+
+#review_div {
+    position:relative;
+    margin-left: 55%;
+    margin-top:7.5%;
+    width:45vw;
+    right: 5%;
+    height: 38vw;
+    font-family: Raleway, sans-serif;
+    border: 2px solid deepskyblue;
+    background-color: whitesmoke;
+    display: inline-block;
+    word-break: normal;
+    overflow-y: scroll;
+}
+
+
+.review_text {
+    border: 2px solid deepskyblue;
+    width:30vw;
+    word-break: normal;
+    margin-left: 2%;
+    box-shadow: inset 10px 10px 5px #dedede;
+
+
 }
 
 #image{

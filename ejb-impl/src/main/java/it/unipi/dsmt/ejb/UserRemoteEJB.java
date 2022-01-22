@@ -57,11 +57,11 @@ public class UserRemoteEJB implements UserRemote {
         ResultSet rs = null;
         if(city.equals("")){
             rs = stmt.executeQuery("select * from users INNER JOIN pets_user pu on users.user_id = pu.user_id where "
-                    +pet +"= TRUE"); //Retrieve all users with that pet in all cities
+                    +pet +"= TRUE AND users.petsitter = 1"); //Retrieve all users with that pet in all cities
         }
         else{
             rs = stmt.executeQuery("select * from users INNER JOIN pets_user pu on users.user_id = pu.user_id where city='"
-                    +city + "'AND " +  pet +"= TRUE"); //Retrieve all users with that city
+                    +city + "'AND " +  pet +"= TRUE AND users.petsitter = 1"); //Retrieve all users with that city
         }
 
         while (rs.next()) {
