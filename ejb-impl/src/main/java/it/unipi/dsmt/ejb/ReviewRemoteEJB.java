@@ -62,4 +62,19 @@ public class ReviewRemoteEJB implements ReviewRemote {
         preparedStmt.execute();
 
     }
+
+    @Override
+    public float computeAvgRating(String petSitter) throws SQLException {;
+        Connection con = dataSource.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("select AVG(r.rating) from review r inner join users u1  where r.pet_sitter = " +
+                "u1.user_id AND u1.username = '" + petSitter + "' "); //Retrieve all rating about this pet sitter
+        System.out.println(rs);
+        if(rs.next())
+            return rs.getFloat(1);
+        else
+            return 0;
+    }
+
+
     }

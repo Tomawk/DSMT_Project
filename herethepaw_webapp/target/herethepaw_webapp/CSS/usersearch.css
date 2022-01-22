@@ -196,14 +196,27 @@ body {
     opacity:0.8;
 }
 
-.rating {
-    position: absolute;
-    left: 90%;
-    top:0.4vw;
-    height: 2vw;
-    width: 7vw;
+.star-rating {
+    left: 85%;
+    right: 5%;
+    top:1.5vw;
     text-align: center;
     font-size: 1.1vw;
     font-family: Raleway, sans-serif;
     vertical-align: center;
+    display: inline-block;
+    position: relative;
+}
+
+
+.empty-stars {
+    position: absolute;
+    color: #222;
+}
+
+.full-stars {
+    color: yellow;
+    opacity: 0.8;
+    overflow: hidden;
+    white-space: nowrap;
 }
