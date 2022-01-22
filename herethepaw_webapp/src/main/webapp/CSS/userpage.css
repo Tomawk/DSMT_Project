@@ -1,6 +1,6 @@
 body {
     overflow-x: hidden;
-    height: 100%;
+    height: 110%;
 }
 
 .topnav{
@@ -228,4 +228,45 @@ p{
     height: 6vw;
     text-align: justify;
     font-style: italic;
+}
+#calendar_h1{
+    position: absolute;
+    top: 38.5vw;
+}
+
+.calendar-wrapper {
+    position: absolute;
+    top: 43.5vw;
+    left: 5vw;
+    width: 80%;
+    margin: auto;
+    border: 1px solid #eee;
+    padding: 0.1vw;
+}
+
+#confirm_date{
+    position: absolute;
+    left: 18vw;
+    top: 74vw;
+}
+
+#selected_dates{
+    position: absolute;
+    top:75vw;
+    width: 80%;
+}
+
+#booking_info{
+    position: relative;
+    top: 0.2vw;
+    font-family: Raleway, sans-serif;
+    font-size: 1.2vw;
+}
+
+
+
+.p_node{
+    color: blueviolet;
+    font-family: Raleway, sans-serif;
+    font-size: 1.2vw;
 }
