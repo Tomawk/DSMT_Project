@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/home/clarissapolidori/.jdks/azul-15.0.6/lib"/>
-    <property name="sun.java.command" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter8607508665090372839.jar /home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire 2022-01-22T11-40-12_090-jvmRun1 surefire1665884669682553790tmp surefire_012819171699293791248tmp"/>
+    <property name="sun.java.command" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter9040888051018947158.jar /home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire 2022-01-22T13-39-23_453-jvmRun1 surefire13953431064735676006tmp surefire_09750156744879071705tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/test-classes:/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/classes:/home/clarissapolidori/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/clarissapolidori/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/clarissapolidori/.m2/repository/javax/ejb/javax.ejb-api/3.2.2/javax.ejb-api-3.2.2.jar:/home/clarissapolidori/.m2/repository/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter8607508665090372839.jar"/>
+    <property name="surefire.real.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter9040888051018947158.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15.0.6+5-MTS"/>
     <property name="user.name" value="clarissapolidori"/>
