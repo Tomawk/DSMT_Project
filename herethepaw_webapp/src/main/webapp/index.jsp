@@ -24,7 +24,7 @@
             <% } else {%>
                  <td><a href="pages/jsp/login.jsp">Login</a></td>
             <%} %>
-            <td><a href="pages/jsp/login.jsp">Reviews</a></td>
+            <td><a href="pages/calendar/index.html">Reviews</a></td>
         </tr>
     </table>
 </nav>

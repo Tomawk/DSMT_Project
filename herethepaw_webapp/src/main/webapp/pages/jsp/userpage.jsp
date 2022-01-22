@@ -1,6 +1,6 @@
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
-<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
 <%@ page import="it.unipi.dsmt.ejb.ReviewRemoteEJB" %>
+<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unipi.dsmt.dto.ReviewDTO" %>
 
@@ -10,7 +10,11 @@
     <meta charset="UTF-8">
     <title>User page</title>
     <link href="CSS/userpage.css" rel="stylesheet" type="text/css">
+    <link href="CSS/calendar.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+    <!-- change to relative path -> something like this <script src="/javascript/calendar.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/wrick17/calendar-plugin@master/calendar.min.js"></script>
 </head>
 <body>
 <%
@@ -19,7 +23,7 @@
     UserDTO target_user = userRemoteEJB.getUser(requested_user);
     ReviewRemoteEJB reviewRemoteEJB = new ReviewRemoteEJB();
     ArrayList<ReviewDTO> user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
-%>
+    %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
     <table>
@@ -77,8 +81,55 @@
             </p>
         <% } %>
     </div>
+    <h1 id="calendar_h1">Book this petsitter:</h1>
+    <div class="calendar-wrapper" id="calendar-wrapper"></div>
+    <button id="confirm_date" onclick="btn_clicked()">Select date</button>
+    <div id="selected_dates">
+        <p id="booking_info"> You selected the following dates: </p>
+    </div>
 </div>
+<script type="text/javascript">
+    var date_array = [];
+    var selected_date;
+    var config = `
+function selectDate(date) {
+  $('#calendar-wrapper').updateCalendarOptions({
+    date: date
+  });
+  selected_date = date;
+}
 
+var defaultConfig = {
+  weekDayLength: 1,
+  onClickDate: selectDate,
+  showYearDropdown: true,
+  startOnMonday: false,
+};
 
+var calendar = $('#calendar-wrapper').calendar(defaultConfig);
+`;
+    eval(config);
+    const flask = new CodeFlask('#editor', {
+        language: 'js',
+        lineNumbers: true
+    });
+    flask.updateCode(config);
+    flask.onUpdate((code) => {
+        try {
+            eval(code);
+        } catch(e) {}
+    });
+
+    function btn_clicked(){
+        const dateArray = selected_date.split(" ");
+        var formatted_date = dateArray[0] + " " + dateArray[2] + "-" + dateArray[1] + "-" + dateArray[3];
+        date_array.push(formatted_date);
+        var node = document.createElement("p");
+        node.setAttribute("class","p_node")
+        var textnode = document.createTextNode(formatted_date);
+        node.appendChild(textnode);
+        document.getElementById("selected_dates").appendChild(node);
+    }
+</script>
 </body>
 </html>
