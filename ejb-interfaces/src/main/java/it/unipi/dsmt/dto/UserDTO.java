@@ -38,6 +38,10 @@ public class UserDTO implements Serializable {
         this.user_id = user_id;
     }
 
+    public String getUser_id() {
+        return user_id;
+    }
+
     public String getName() {
         return name;
     }

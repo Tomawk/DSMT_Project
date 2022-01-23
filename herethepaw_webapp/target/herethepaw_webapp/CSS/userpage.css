@@ -1,6 +1,6 @@
 body {
     overflow-x: hidden;
-    height: 100%;
+    height: 110%;
 }
 
 .topnav{
@@ -120,7 +120,7 @@ body {
 #profile_div {
     position:absolute;
     left: 5%;
-    width:  40vw;
+    width:  40%;
     min-height: 38vw;
     font-family: Raleway, sans-serif;
     margin-top: 7.5%; /* -1/2 height */
@@ -133,7 +133,7 @@ body {
     position:relative;
     margin-left: 55%;
     margin-top:7.5%;
-    width:45vw;
+    width:40%;
     right: 5%;
     height: 38vw;
     font-family: Raleway, sans-serif;
@@ -228,4 +228,89 @@ p{
     height: 6vw;
     text-align: justify;
     font-style: italic;
+}
+#calendar_h1{
+    position: absolute;
+    top: 47vw;
+    left: 32%;
+    font-family: Raleway, sans-serif;
+}
+
+.calendar-wrapper {
+    position: absolute;
+    top: 52vw;
+    left: 35%;
+    width: 30%;
+    margin: auto;
+    border: 1px solid #eee;
+    padding: 0.1vw;
+}
+
+#confirm_date{
+    position: absolute;
+    width: 10%;
+    left: 45%;
+    top: 82vw;
+    padding: 10px 18px;
+    background-color: lightgrey;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    font-size: 1.3vw;
+    color: black;
+    font-family: 'Franklin Gothic Book', sans-serif;
+    text-decoration: none;
+}
+
+#confirm_date:hover{
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+#selected_dates{
+    position: absolute;
+    left: 35%;
+    top:83vw;
+    width: 30%;
+}
+
+#booking_info{
+    position: relative;
+    top: 1.5vw;
+    font-family: Raleway, sans-serif;
+    font-size: 1.2vw;
+}
+
+#p_from{
+    color: limegreen;
+    position: relative;
+    top:1.2vw;
+    font-family: Raleway, sans-serif;
+    font-size: 1.2vw;
+}
+
+#p_to{
+    color: dodgerblue;
+    font-family: Raleway, sans-serif;
+    font-size: 1.2vw;
+}
+
+#confirm_book{
+    position: absolute;
+    right: 35%;
+    top: 88vw;
+    padding: 10px 18px;
+    background-color: orangered;
+    border: none;
+    border-radius: 0.5vw;
+    cursor: pointer;
+    font-size: 1.3vw;
+    color: black;
+    font-family: 'Franklin Gothic Book', sans-serif;
+    text-decoration: none;
+}
+
+#confirm_book:hover{
+    opacity: 0.8;
+    text-decoration: underline;
 }

@@ -83,6 +83,7 @@ public class UserRemoteEJB implements UserRemote {
                     rs.getString(8),pets,rs.getString(11),rs.getBoolean(9),rs.getBoolean(10));
             returned_list.add(userDTO);
         }
+        con.close();
         return returned_list;
     }
 
@@ -111,6 +112,7 @@ public class UserRemoteEJB implements UserRemote {
                     rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
                     rs.getString(8),pets,rs.getString(11),rs.getBoolean(9),rs.getBoolean(10));
         }
+        con.close();
         return;
         //return return_user;
     }

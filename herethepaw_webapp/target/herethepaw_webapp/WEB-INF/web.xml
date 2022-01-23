@@ -16,6 +16,28 @@
       it.unipi.dsmt.servlet.UserListServlet
     </servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>
+      it.unipi.dsmt.servlet.LoginServlet
+    </servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>
+      it.unipi.dsmt.servlet.LogoutServlet
+    </servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BookingServlet</servlet-name>
+    <servlet-class>
+      it.unipi.dsmt.servlet.BookingServlet
+    </servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BookingServlet</servlet-name>
+    <url-pattern>/book_petsitter</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UserSearchServlet</servlet-name>
     <url-pattern>/search_user</url-pattern>
@@ -23,6 +45,14 @@
   <servlet-mapping>
     <servlet-name>UserListServlet</servlet-name>
     <url-pattern>/UserListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
   <error-page>
     <error-code>404</error-code>

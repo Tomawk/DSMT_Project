@@ -33,6 +33,7 @@ public class ReviewRemoteEJB implements ReviewRemote {
                         rs.getString(4), rs.getInt(5), rs.getTimestamp(6));
                 returned_list.add(reviewDTO);
             }
+            con.close();
             return returned_list;
     }
 
@@ -47,6 +48,7 @@ public class ReviewRemoteEJB implements ReviewRemote {
         stmt.executeUpdate("INSERT INTO review (owner, pet_sitter, text, rating, timestamp) VALUES (" +
                 owner  + "," + pet_sitter + "," + text + "," + rating + "," + now); //Retrieve all review about this pet sitter
 
+        con.close();
     }
 
 
@@ -60,7 +62,7 @@ public class ReviewRemoteEJB implements ReviewRemote {
         preparedStmt.setInt(1, reviewId);
 
         preparedStmt.execute();
-
+        con.close();
     }
 
     @Override
@@ -70,10 +72,13 @@ public class ReviewRemoteEJB implements ReviewRemote {
         ResultSet rs = stmt.executeQuery("select AVG(r.rating) from review r inner join users u1  where r.pet_sitter = " +
                 "u1.user_id AND u1.username = '" + petSitter + "' "); //Retrieve all rating about this pet sitter
         System.out.println(rs);
-        if(rs.next())
+        if(rs.next()){
+            con.close();
             return rs.getFloat(1);
-        else
+        }else {
+            con.close();
             return 0;
+        }
     }
 
 
