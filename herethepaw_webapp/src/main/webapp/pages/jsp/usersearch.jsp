@@ -30,8 +30,8 @@
     <table>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(UserRemoteEJB.getLogged_user() != null) { %>
-                <td><a href="UserListServlet?username=<%=UserRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <% if(userRemoteEJB.getLogged_user() != null) { %>
+                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
             <% } else { %>
                 <td><a href="pages/jsp/login.jsp">Login</a></td>

@@ -12,11 +12,21 @@ import java.sql.SQLException;
 
 @WebServlet(name = "LoginServlet",value = "/login")
 public class LoginServlet extends HttpServlet {
+    private UserRemote userRemoteEJB;
+
+    {
+        try {
+            userRemoteEJB = new UserRemoteEJB();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username_ = request.getParameter("username");
         String password_ = request.getParameter("password");
 
-        UserRemote userRemoteEJB;
+
         try {
             userRemoteEJB = new UserRemoteEJB();
             userRemoteEJB.loginUser(username_,password_);
