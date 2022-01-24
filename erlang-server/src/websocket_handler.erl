@@ -23,7 +23,7 @@ websocket_handle({text, Message}, State) ->
       % L'utente non vuole piu chattare
       gen_server:cast(?SERVER, {logout, self()});
 
-    First_param == <<"!PING">> ->
+    First_param == "&PING" ->
       ok;
 
     true ->

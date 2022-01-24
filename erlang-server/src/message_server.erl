@@ -15,7 +15,7 @@ init(_) ->
     {'_', [{'_', websocket_handler, #{}}]}
   ]),
   cowboy:start_clear(my_http_listener,
-    [{port, 8080}],
+    [{port, 3307}],
     #{env=> #{dispatch =>Dispatch}}
   ),
   {ok, ""}.
@@ -68,15 +68,15 @@ send(Pid, Str, Args) ->
 % ---------- UTILITY ------------
 
 format_message(NickName, Message) ->
-  FormattedMsg = concat([format_time(), "^", NickName, "^", Message, "\n"]),
+  FormattedMsg = NickName ++ ":" ++ Message,
   FormattedMsg.
 
-format_time() ->
-  {Mega, Sec, Micro} = os:timestamp(),
-  io_lib:format('(~13..0b)', [(Mega*1000000 + Sec)*1000 + round(Micro/1000)]).
+%format_time() ->
+%  {Mega, Sec, Micro} = os:timestamp(),
+%  io_lib:format('(~13..0b)', [(Mega*1000000 + Sec)*1000 + round(Micro/1000)]).
 
-to_string(Value) when is_binary(Value) -> binary_to_list(Value);
-to_string(Value) -> Value.
+%to_string(Value) when is_binary(Value) -> binary_to_list(Value);
+%to_string(Value) -> Value.
 
-concat(List) ->
-  lists:flatten(lists:map(fun to_string/1, List)).
+%concat(List) ->
+%  lists:flatten(lists:map(fun to_string/1, List)).
