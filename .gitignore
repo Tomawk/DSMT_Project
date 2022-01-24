@@ -1,0 +1,6 @@
+/herethepaw_webapp/target
+out
+/ejb-interfaces/target
+/ejb-client/target
+/ejb-impl/target
+.idea
