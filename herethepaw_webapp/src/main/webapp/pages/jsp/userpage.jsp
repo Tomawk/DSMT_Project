@@ -82,8 +82,9 @@
 
 </div>
 <% if(target_user.isPetsitter()) { %> <!-- This user is a petsitter - Reviews page should appear -->
-    <div id="review_list">
+
     <div id="review_div">
+        <div id="review_list">
         <% for(ReviewDTO item:user_reviews){ %>
 
         <p class="review_text">
@@ -92,9 +93,30 @@
             <i><%=item.getTimestamp()%></i>
         </p>
         <% } %>
-    </div>
+            <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
+            </div>
+                <div class="container">
+                    <form method="post" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
+                        <textarea type="text" name="review" class="input" placeholder="Write a review" v-model="newItem" @keyup.enter=""></textarea>
+                        <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+                        <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
+                        <button class='primaryContained float-right' type="submit">Add Review</button>
+                        <div class="box">
+                            <select name="rating">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </form>
+                </div><!--End Container -->
 
-    </div>
+            </div>
+
+        <% } %>
 
 <% } %>
 
