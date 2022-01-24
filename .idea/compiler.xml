@@ -13,6 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ejb-client" target="1.7" />
       <module name="ejb-interface" target="1.7" />
       <module name="webapp" target="11" />
     </bytecodeTargetLevel>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.unipi.dsmt.AppTest" time="0.018" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="it.unipi.dsmt.AppTest" time="0.026" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/test-classes:/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/classes:/home/clarissapolidori/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/clarissapolidori/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/clarissapolidori/.m2/repository/javax/ejb/javax.ejb-api/3.2.2/javax.ejb-api-3.2.2.jar:/home/clarissapolidori/.m2/repository/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar:"/>
+    <property name="java.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/test-classes:/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/classes:/home/clarissapolidori/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/clarissapolidori/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/clarissapolidori/.m2/repository/javax/ejb/javax.ejb-api/3.2.2/javax.ejb-api-3.2.2.jar:/home/clarissapolidori/.m2/repository/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar:/home/clarissapolidori/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/home/clarissapolidori/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.0/jackson-databind-2.13.0.jar:/home/clarissapolidori/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.0/jackson-annotations-2.13.0.jar:/home/clarissapolidori/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.0/jackson-core-2.13.0.jar:"/>
     <property name="java.vm.vendor" value="Azul Systems, Inc."/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.vendor.url" value="http://www.azul.com/"/>
@@ -12,9 +12,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/home/clarissapolidori/.jdks/azul-15.0.6/lib"/>
-    <property name="sun.java.command" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter5089025007869009910.jar /home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire 2022-01-24T10-43-10_107-jvmRun1 surefire4379611668989031074tmp surefire_03209063790356221646tmp"/>
+    <property name="sun.java.command" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter7665859245749784635.jar /home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire 2022-01-24T15-24-04_811-jvmRun1 surefire5299531776292751099tmp surefire_012648409497313916022tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/test-classes:/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/classes:/home/clarissapolidori/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/clarissapolidori/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/clarissapolidori/.m2/repository/javax/ejb/javax.ejb-api/3.2.2/javax.ejb-api-3.2.2.jar:/home/clarissapolidori/.m2/repository/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar:"/>
+    <property name="surefire.test.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/test-classes:/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/classes:/home/clarissapolidori/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/clarissapolidori/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/clarissapolidori/.m2/repository/javax/ejb/javax.ejb-api/3.2.2/javax.ejb-api-3.2.2.jar:/home/clarissapolidori/.m2/repository/javax/transaction/javax.transaction-api/1.3/javax.transaction-api-1.3.jar:/home/clarissapolidori/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/home/clarissapolidori/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.13.0/jackson-databind-2.13.0.jar:/home/clarissapolidori/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.13.0/jackson-annotations-2.13.0.jar:/home/clarissapolidori/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.13.0/jackson-core-2.13.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/clarissapolidori"/>
     <property name="user.language" value="en"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter5089025007869009910.jar"/>
+    <property name="surefire.real.class.path" value="/home/clarissapolidori/Documents/GitHub/DSMT_Project/ejb-interfaces/target/surefire/surefirebooter7665859245749784635.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="15.0.6+5-MTS"/>
     <property name="user.name" value="clarissapolidori"/>

@@ -2,6 +2,8 @@
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
 <%@ page import="it.unipi.dsmt.dto.UserDTO" %>
 <%@ page import="it.unipi.dsmt.ejb.ReviewRemoteEJB" %>
+<%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
+<%@ page import="it.unipi.dsmt.interfaces.ReviewRemote" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -16,11 +18,11 @@
 <%
         String city_searched = request.getParameter("city");
         String pet_searched = request.getParameter("pet");
-        UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
+        UserRemote userRemoteEJB = new UserRemoteEJB();
         ArrayList<UserDTO> filtered_list = userRemoteEJB.getUserList(city_searched,pet_searched);
         if(city_searched.equals(""))
             city_searched = "All";
-    ReviewRemoteEJB reviewRemoteEJB = new ReviewRemoteEJB();
+    ReviewRemote reviewRemoteEJB = new ReviewRemoteEJB();
     float avgRating = 0;
 %>
 <nav class="topnav">
@@ -28,8 +30,8 @@
     <table>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(userRemoteEJB.getLogged_user() != null) { %>
-                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <% if(UserRemoteEJB.getLogged_user() != null) { %>
+                <td><a href="UserListServlet?username=<%=UserRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
             <% } else { %>
                 <td><a href="pages/jsp/login.jsp">Login</a></td>

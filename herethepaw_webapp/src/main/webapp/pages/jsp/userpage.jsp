@@ -3,6 +3,8 @@
 <%@ page import="it.unipi.dsmt.dto.UserDTO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unipi.dsmt.dto.ReviewDTO" %>
+<%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
+<%@ page import="it.unipi.dsmt.interfaces.ReviewRemote" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,9 +21,9 @@
 <body>
 <%
     String requested_user = request.getParameter("username");
-    UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
+    UserRemote userRemoteEJB = new UserRemoteEJB();
     UserDTO target_user = userRemoteEJB.getUser(requested_user);
-    ReviewRemoteEJB reviewRemoteEJB = new ReviewRemoteEJB();
+    ReviewRemote reviewRemoteEJB = new ReviewRemoteEJB();
     ArrayList<ReviewDTO> user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
     %>
 <nav class="topnav">
@@ -29,8 +31,8 @@
     <table>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(userRemoteEJB.getLogged_user() != null) { %>
-            <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <% if(UserRemoteEJB.getLogged_user() != null) { %>
+            <td><a href="UserListServlet?username=<%=UserRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=UserRemoteEJB.getLogged_user().getUsername()%></a></td>
             <td><a href="logout">Logout</a></td>
             <% } else { %>
             <td><a href="pages/jsp/login.jsp">Login</a></td>
@@ -95,7 +97,7 @@
 <% } %>
 
 
-<% if(userRemoteEJB.getLogged_user() != null && target_user.isPetsitter()) { %>
+<% if(UserRemoteEJB.getLogged_user() != null && target_user.isPetsitter()) { %>
     <!-- User is Logged & target == petsitter - Calendar should be displayed otherwise not -->
 
     <h1 id="calendar_h1">Book this pet sitter &nbsp;<i class="far fa-handshake"></i></h1>
@@ -107,7 +109,7 @@
         <p id="p_to"><strong>To: </strong></p>
     </div>
     <form method="post" id="book_form" action="http://localhost:8080/herethepaw_webapp/book_petsitter">
-        <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+        <input type="hidden" name="pet_owner" value="<%=UserRemoteEJB.getLogged_user().getUser_id()%>">
         <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
     <button id="confirm_book" onclick="book_btn_clicked()">Book now!</button>
     </form>

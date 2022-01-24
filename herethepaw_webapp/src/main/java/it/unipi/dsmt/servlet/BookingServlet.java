@@ -1,6 +1,7 @@
 package it.unipi.dsmt.servlet;
 
 import it.unipi.dsmt.ejb.BookingRemoteEJB;
+import it.unipi.dsmt.interfaces.BookingRemote;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -17,7 +18,7 @@ public class BookingServlet extends HttpServlet {
         String from_date = request.getParameter("from_date");
         String to_date = request.getParameter("to_date");
         String pet = "dog";
-        BookingRemoteEJB bookingRemoteEJB = null;
+        BookingRemote bookingRemoteEJB;
         try {
             bookingRemoteEJB = new BookingRemoteEJB();
             bookingRemoteEJB.insertPendingBooking(petsitter_id,petowner_id,from_date,to_date,pet);
