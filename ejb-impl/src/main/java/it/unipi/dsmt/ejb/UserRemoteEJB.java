@@ -3,11 +3,15 @@ package it.unipi.dsmt.ejb;
 import it.unipi.dsmt.dto.UserDTO;
 import it.unipi.dsmt.interfaces.UserRemote;
 
-import javax.ejb.*;
-
-import javax.naming.*;
+import javax.ejb.Stateless;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 @Stateless

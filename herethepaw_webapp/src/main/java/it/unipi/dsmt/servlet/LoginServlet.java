@@ -1,6 +1,7 @@
 package it.unipi.dsmt.servlet;
 
 import it.unipi.dsmt.ejb.UserRemoteEJB;
+import it.unipi.dsmt.interfaces.UserRemote;
 import jakarta.servlet.RequestDispatcher;
 
 import jakarta.servlet.*;
@@ -17,7 +18,7 @@ public class LoginServlet extends HttpServlet {
         String username_ = request.getParameter("username");
         String password_ = request.getParameter("password");
 
-        UserRemoteEJB userRemoteEJB = null;
+        UserRemote userRemoteEJB;
         try {
             userRemoteEJB = new UserRemoteEJB();
             userRemoteEJB.loginUser(username_,password_);

@@ -9,17 +9,14 @@
     <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<%
-    UserRemoteEJB userRemoteEJB = new UserRemoteEJB();
-%>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
     <table>
         <tr>
             <td><a onclick="scrollup()">Home</a></td>
 
-            <% if(userRemoteEJB.getLogged_user() != null){ %>
-                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <% if(UserRemoteEJB.getLogged_user() != null){ %>
+                <td><a href="UserListServlet?username=<%=UserRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=UserRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
             <% } else {%>
                  <td><a href="pages/jsp/login.jsp">Login</a></td>

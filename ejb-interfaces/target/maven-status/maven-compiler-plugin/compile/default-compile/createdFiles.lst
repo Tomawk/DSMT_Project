@@ -2,3 +2,4 @@ it/unipi/dsmt/interfaces/UserRemote.class
 it/unipi/dsmt/dto/ReviewDTO.class
 it/unipi/dsmt/interfaces/ReviewRemote.class
 it/unipi/dsmt/dto/UserDTO.class
+it/unipi/dsmt/interfaces/BookingRemote.class

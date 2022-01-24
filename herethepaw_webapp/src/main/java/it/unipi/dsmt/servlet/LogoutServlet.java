@@ -17,13 +17,7 @@ public class LogoutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserRemoteEJB userRemoteEJB = null;
-        try {
-            userRemoteEJB = new UserRemoteEJB();
-            userRemoteEJB.setLogged_user(null);
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
+        UserRemoteEJB.setLogged_user(null);
         response.sendRedirect(request.getContextPath()+"/index.jsp");
     }
 }

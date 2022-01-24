@@ -7,7 +7,9 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 @Stateless
 public class BookingRemoteEJB implements BookingRemote{
