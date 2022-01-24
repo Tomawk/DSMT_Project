@@ -34,10 +34,10 @@
             <% if(userRemoteEJB.getLogged_user() != null) { %>
             <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
             <td><a href="logout">Logout</a></td>
+            <td><a href="pages/jsp/requests.jsp">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
             <% } else { %>
             <td><a href="pages/jsp/login.jsp">Login</a></td>
             <% } %>
-            <td><a href="#contatti">Reviews</a></td>
         </tr>
     </table>
 </nav>
@@ -110,11 +110,22 @@
         <p id="p_from"><strong>From: </strong></p>
         <p id="p_to"><strong>To: </strong></p>
     </div>
+    <div id="selected_pet">
+        <p id="pet_info"> Please select your pet&nbsp;<i class="fas fa-arrow-circle-down"></i></p>
     <form method="post" id="book_form" action="http://localhost:8080/herethepaw_webapp/book_petsitter">
-        <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
-        <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
+        <input type="hidden" name="pet_owner_id" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+        <input type="hidden" name="pet_sitter_id" value="<%=target_user.getUser_id()%>">
+        <input type="hidden" name="pet_sitter_us" value="<%=target_user.getUsername()%>">
+        <input type="hidden" name="pet_owner_us" value="<%=userRemoteEJB.getLogged_user().getUsername()%>">
+        <select name="pets" id="pets">
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="rabbit">Rabbit</option>
+            <option value="hamster">Hamster</option>
+        </select>
     <button id="confirm_book" onclick="book_btn_clicked()">Book now!</button>
     </form>
+    </div>
 <% } %>
 
 

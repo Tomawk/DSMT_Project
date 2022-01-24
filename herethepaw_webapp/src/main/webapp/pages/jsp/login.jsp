@@ -13,7 +13,6 @@
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
             <td><a href="#hr1">Login</a></td>
-            <td><a href="#contatti">Reviews</a></td>
         </tr>
     </table>
 </nav>

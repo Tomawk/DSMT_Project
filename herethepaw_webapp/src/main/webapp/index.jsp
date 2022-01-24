@@ -21,10 +21,10 @@
                 if(userRemoteEJB.getLogged_user() != null){ %>
                 <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
+                <td><a href="pages/jsp/requests.jsp">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
             <% } else {%>
                  <td><a href="pages/jsp/login.jsp">Login</a></td>
             <%} %>
-            <td><a href="pages/calendar/index.html">Reviews</a></td>
         </tr>
     </table>
 </nav>
