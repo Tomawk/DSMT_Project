@@ -92,7 +92,7 @@ public class UserRemoteEJB implements UserRemote {
     }
 
     @Override
-    public void loginUser (String username, String password) throws SQLException {
+    public void loginUser(String username, String password) throws SQLException {
         //UserDTO return_user = null;
         Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();

@@ -49,6 +49,12 @@
         </dependency>
         <dependency>
             <groupId>it.unipi.dsmt</groupId>
+            <artifactId>ejb-interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.unipi.dsmt</groupId>
             <artifactId>ejb-impl</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
