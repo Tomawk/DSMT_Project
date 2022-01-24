@@ -117,15 +117,16 @@ public class UserRemoteEJB implements UserRemote {
                     rs.getString(8),pets,rs.getString(11),rs.getBoolean(9),rs.getBoolean(10));
         }
         con.close();
-        return;
         //return return_user;
     }
 
-    public static UserDTO getLogged_user() {
+    @Override
+    public UserDTO getLogged_user() {
         return logged_user;
     }
 
-    public static void setLogged_user(UserDTO logged_user) {
+    @Override
+    public void setLogged_user(UserDTO logged_user) {
         UserRemoteEJB.logged_user = logged_user;
     }
 }

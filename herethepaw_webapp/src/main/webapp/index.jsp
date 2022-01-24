@@ -1,4 +1,5 @@
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
+<%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +16,10 @@
         <tr>
             <td><a onclick="scrollup()">Home</a></td>
 
-            <% if(UserRemoteEJB.getLogged_user() != null){ %>
-                <td><a href="UserListServlet?username=<%=UserRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=UserRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <%
+                UserRemote userRemoteEJB = new UserRemoteEJB();
+                if(userRemoteEJB.getLogged_user() != null){ %>
+                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
             <% } else {%>
                  <td><a href="pages/jsp/login.jsp">Login</a></td>

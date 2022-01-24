@@ -31,8 +31,8 @@
     <table>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(UserRemoteEJB.getLogged_user() != null) { %>
-            <td><a href="UserListServlet?username=<%=UserRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=UserRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <% if(userRemoteEJB.getLogged_user() != null) { %>
+            <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
             <td><a href="logout">Logout</a></td>
             <% } else { %>
             <td><a href="pages/jsp/login.jsp">Login</a></td>
@@ -82,7 +82,7 @@
 
 </div>
 <% if(target_user.isPetsitter()) { %> <!-- This user is a petsitter - Reviews page should appear -->
-
+    <div id="review_list">
     <div id="review_div">
         <% for(ReviewDTO item:user_reviews){ %>
 
@@ -94,10 +94,12 @@
         <% } %>
     </div>
 
+    </div>
+
 <% } %>
 
 
-<% if(UserRemoteEJB.getLogged_user() != null && target_user.isPetsitter()) { %>
+<% if(userRemoteEJB.getLogged_user() != null && target_user.isPetsitter()) { %>
     <!-- User is Logged & target == petsitter - Calendar should be displayed otherwise not -->
 
     <h1 id="calendar_h1">Book this pet sitter &nbsp;<i class="far fa-handshake"></i></h1>
@@ -109,7 +111,7 @@
         <p id="p_to"><strong>To: </strong></p>
     </div>
     <form method="post" id="book_form" action="http://localhost:8080/herethepaw_webapp/book_petsitter">
-        <input type="hidden" name="pet_owner" value="<%=UserRemoteEJB.getLogged_user().getUser_id()%>">
+        <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
         <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
     <button id="confirm_book" onclick="book_btn_clicked()">Book now!</button>
     </form>
