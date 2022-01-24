@@ -250,7 +250,7 @@ p{
     position: absolute;
     width: 10%;
     left: 45%;
-    top: 82vw;
+    top: 84vw;
     padding: 10px 18px;
     background-color: lightgrey;
     border: none;
@@ -269,9 +269,10 @@ p{
 
 #selected_dates{
     position: absolute;
-    left: 35%;
-    top:83vw;
+    left: 15%;
+    top:87vw;
     width: 30%;
+    height: 10vw;
 }
 
 #booking_info{
@@ -295,10 +296,40 @@ p{
     font-size: 1.2vw;
 }
 
-#confirm_book{
+
+
+#selected_pet{
     position: absolute;
-    right: 35%;
-    top: 88vw;
+    left: 45%;
+    top:87vw;
+    width: 30%;
+    height: 10vw;
+}
+
+#pet_info{
+    position: relative;
+    top: 1.5vw;
+    font-family: Raleway, sans-serif;
+    font-size: 1.2vw;
+}
+
+#pets{
+    position: relative;
+    top: 0.5vw;
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 0.1vw;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Book', sans-serif;
+}
+
+#confirm_book{
+    position: relative;
+    left: 45%;
+    top: 20%;
     padding: 10px 18px;
     background-color: orangered;
     border: none;
