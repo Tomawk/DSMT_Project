@@ -45,8 +45,8 @@ public class ReviewRemoteEJB implements ReviewRemote {
         Statement stmt = con.createStatement();
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
-        stmt.executeUpdate("INSERT INTO review (owner, pet_sitter, text, rating, timestamp) VALUES (" +
-                owner  + "," + pet_sitter + "," + text + "," + rating + "," + now); //Retrieve all review about this pet sitter
+        stmt.executeUpdate("INSERT INTO review (owner, pet_sitter, text, rating, timestamp)\n" +
+                        "VALUES ( '" + owner  + "', '" + pet_sitter + "', '" + text + "'," + rating + ", '" + now + "');"); //Retrieve all review about this pet sitter
 
         con.close();
     }

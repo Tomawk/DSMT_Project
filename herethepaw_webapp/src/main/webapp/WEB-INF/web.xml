@@ -34,6 +34,12 @@
       it.unipi.dsmt.servlet.BookingServlet
     </servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>NewReviewServlet</servlet-name>
+    <servlet-class>
+      it.unipi.dsmt.servlet.NewReviewServlet
+    </servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>BookingServlet</servlet-name>
     <url-pattern>/book_petsitter</url-pattern>
@@ -53,6 +59,10 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>NewReviewServlet</servlet-name>
+    <url-pattern>/new_review</url-pattern>
   </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
