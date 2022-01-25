@@ -23,7 +23,8 @@
 <%
     UserRemote userRemoteEJB = new UserRemoteEJB();
     BookingRemote bookingRemoteEJB = new BookingRemoteEJB();
-    ArrayList<BookingDTO> booking_list = bookingRemoteEJB.displayPendingBooking(userRemoteEJB.getLogged_user().getUsername());
+    ArrayList<BookingDTO> pending_booking_list = bookingRemoteEJB.displayPendingBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter());
+    ArrayList<BookingDTO> confirmed_booking_list = bookingRemoteEJB.displayConfirmedBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter());
 %>
 <nav class="topnav">
 <img src="../../images/HereThePaw_Logo.png" alt="logo">
@@ -49,8 +50,12 @@
     </table>
 </aside>
 <div id="main_div">
+    <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
+    <h1>Pending Booking Requests Received:</h1>
+    <% } else {%>
     <h1>Pending Booking Requests Sent:</h1>
-    <% for(BookingDTO item:booking_list){%>
+    <% } %>
+    <% for(BookingDTO item:pending_booking_list){%>
         <div class="div_book">
             <strong>Sender&nbsp;<i class="fas fa-user"></i>:&nbsp;</strong><%=item.getPo_username()%>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -61,7 +66,42 @@
             <strong style="color: dodgerblue;">To&nbsp;<i class="fas fa-calendar-check"></i>:&nbsp;</strong><%=item.getDate_to()%>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <strong>Pet&nbsp;<i class="fas fa-paw"></i>:&nbsp;</strong><%=item.getPet()%>
+            <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
+            <form method="post" action="http://localhost:8080/herethepaw_webapp/confirm_booking">
+                <input type="hidden" name="booking_id" value="<%=item.getBooking_id()%>">
+                <button id="accept_btn" name="accept_btn" type="submit"> Accept </button>
+                <button id="decline_btn" name="decline_btn" type="submit"> Decline </button>
+            </form>
+            <% } %>
         </div>
+    <% } %>
+</div>
+<div id="secondary_div">
+    <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
+        <h1>Confirmed Booking Requests Received:</h1>
+    <% } else {%>
+        <h1>Confirmed Booking Requests Sent:</h1>
+    <% } %>
+    <% for(BookingDTO item:confirmed_booking_list){%>
+
+    <div class="div_book">
+        <strong>Sender&nbsp;<i class="fas fa-user"></i>:&nbsp;</strong><%=item.getPo_username()%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Receiver&nbsp;<i class="fas fa-user-tie"></i>:&nbsp;</strong><%=item.getPs_username()%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="color: limegreen;">From&nbsp;<i class="fas fa-calendar-check"></i>:&nbsp;</strong><%=item.getDate_from()%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="color: dodgerblue;">To&nbsp;<i class="fas fa-calendar-check"></i>:&nbsp;</strong><%=item.getDate_to()%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>Pet&nbsp;<i class="fas fa-paw"></i>:&nbsp;</strong><%=item.getPet()%>
+        <% if(item.getAccepted().equals("accepted")) { %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="color:limegreen">Status: <%=item.getAccepted()%>&nbsp;<i class="fas fa-check"></i></strong>
+        <% } else {%>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong style="color:red">Status: <%=item.getAccepted()%>&nbsp;<i class="fas fa-times"></i></strong>
+        <% } %>
+    </div>
     <% } %>
 </div>
 </body>

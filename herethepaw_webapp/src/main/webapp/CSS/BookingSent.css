@@ -1,0 +1,57 @@
+.primary_div{
+    position: absolute;
+    left:50%;
+    top:50%;
+    width:  30vw;
+    height: 38vw;
+    margin-left:-14vw; /* -1/2 width */
+    margin-top: -17vw; /* -1/2 height */
+    box-shadow: 9px 10px 34px 6px rgba(0,0,0,0.7);
+}
+
+.primary_div h1{
+    position: relative;
+    top:20%;
+    width: 100%;
+    text-align: center;
+    font-family: Raleway, sans-serif;
+}
+
+#image_div{
+     text-align: center;
+     width: 100%;
+     height: 35%;
+     position: relative;
+ }
+
+img.tick {
+    width: 25%;
+    position: relative;
+    top: 10vw;
+
+}
+
+img.cross {
+    width: 30%;
+    position: relative;
+    top: 10vw;
+
+}
+
+p{
+    position: relative;
+    top: 15vw;
+    font-family: Raleway, sans-serif;
+    color: darkgrey;
+    width: 100%;
+    text-align: center;
+}
+
+a{
+    font-family: Raleway, sans-serif;
+    color: darkgrey;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
