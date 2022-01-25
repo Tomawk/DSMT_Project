@@ -79,7 +79,6 @@
     <p id= "cap"><strong>ZIP Code: </strong><%=target_user.getPostal_code()%></p>
     <p id= "description">"<%=target_user.getDescription()%>"</p>
 
-
 </div>
 <% if(target_user.isPetsitter()) { %> <!-- This user is a petsitter - Reviews page should appear -->
 
@@ -125,13 +124,13 @@
                 </div><!--End Container -->
 
             </div>
-
         <% } %>
+
 
 <% } %>
 
 
-<% if(userRemoteEJB.getLogged_user() != null && target_user.isPetsitter()) { %>
+<% if(userRemoteEJB.getLogged_user() != null && target_user.isPetsitter() && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
     <!-- User is Logged & target == petsitter - Calendar should be displayed otherwise not -->
 
     <h1 id="calendar_h1">Book this pet sitter &nbsp;<i class="far fa-handshake"></i></h1>
