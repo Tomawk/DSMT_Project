@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/pages/calendar/index.html" value="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/pages/calendar" />
+        <entry key="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/pages/jsp/userpage.jsp" value="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/pages/jsp" />
         <entry key="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/pages/jsp/usersearch.jsp" value="file://$PROJECT_DIR$/herethepaw_webapp/src/main/webapp/pages/jsp" />
       </map>
     </option>
