@@ -124,10 +124,10 @@ body {
     min-height: 38vw;
     font-family: Raleway, sans-serif;
     margin-top: 7.5%; /* -1/2 height */
-    border: 0.104vw solid deepskyblue;
-    background-color: whitesmoke;
+    background-color: ghostwhite;
     border-radius: 0.5vw;
     display: inline-block;
+    box-shadow: 0px 0px 10px 4px #000000;
 }
 
 #review_div {
@@ -138,11 +138,11 @@ body {
     right: 5%;
     height: 38vw;
     font-family: Raleway, sans-serif;
-    border: 0.104vw solid deepskyblue;
     border-radius: 0.5vw;
-    background-color: whitesmoke;
+    background-color: ghostwhite;
     display: inline-block;
     word-break: normal;
+    box-shadow: 0px 0px 10px 4px #000000;
 
 }
 
@@ -152,7 +152,7 @@ body {
     width:100%;
     height: 27vw;
     font-family: Raleway, sans-serif;
-    background-color: whitesmoke;
+    background-color: ghostwhite;
     display: inline-block;
     word-break: normal;
 }
@@ -189,6 +189,8 @@ body {
 }
 
 button.primaryContained {
+    position: relative;
+    top: -2vw;
     background: deepskyblue;
     color: #fff;
     padding: 0.52vw 0.52vw;
@@ -212,26 +214,27 @@ button.primaryContained:hover {
 }
 
 .review_text {
-    border: 2px solid deepskyblue;
+    background-color: ghostwhite;
     width:30vw;
     word-break: normal;
     margin-left: 2%;
-    box-shadow: inset 0.52vw 0.53vw 0.26vw #dedede;
-
-
+    border-top: solid 2px black;
+    box-shadow: 7px 7px 4px 0px rgba(0,0,0,0.6);
 }
 
 .rating_box {
     position: absolute;
     margin-top: -10%;
     border: 2px solid #ff6a00;
-    background: #ff6a00;
+    background: #FF6A00;
+    background: -moz-linear-gradient(45deg, #FF6A00 0%, #FFFFFF 100%);
+    background: -webkit-linear-gradient(45deg, #FF6A00 0%, #FFFFFF 100%);
+    background: linear-gradient(45deg, #FF6A00 0%, #FFFFFF 100%);
     border-radius: 50%;
     width: 2.6vw;
     height: 2.6vw;
     text-align: center;
-    margin-left: 85%;
-    box-shadow: inset 10px 10px 5px #dedede;
+    margin-left: 85%;+
     display: inline-block;
 
 
@@ -412,15 +415,19 @@ p{
 }
 
 #box_rating select{
+    width: 12vw;
     background-color: #ff6a00;
 
 }
 
 #box_rating {
     position: absolute;
-    margin-left: 80%;
-    margin-top: -15%;
+    left: 40%;
+    top: 88%;
     border-radius: 8px;
+    font-size: 1.1vw;
+    width: 5vw;
+    width: 10vw;
 }
 
 #box_pets {
@@ -439,9 +446,6 @@ p{
     background-color: deepskyblue;
 }
 
-
-
-
 #box_rating select option {
     padding: 1.56vw;
     background-color: #ff6a00;
@@ -453,6 +457,11 @@ p{
     margin-left: 70%;
     width: 15.6vw;
     height: 7.8vw;
+}
+
+textarea{
+    position: relative;
+    top: -3vw;
 }
 
 
