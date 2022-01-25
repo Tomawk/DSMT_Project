@@ -22,7 +22,7 @@ public class BookingServlet extends HttpServlet {
         String to_date = request.getParameter("to_date");
 
         if(from_date == null || to_date == null) {
-            response.sendRedirect(request.getContextPath()+"/index.jsp");
+            response.sendRedirect(request.getContextPath()+"/pages/BookingError.html");
             return;
         }
 
@@ -36,7 +36,7 @@ public class BookingServlet extends HttpServlet {
             System.out.println(e);
             e.printStackTrace();
         }
-        response.sendRedirect(request.getContextPath()+"/index.jsp");
+        response.sendRedirect(request.getContextPath()+"/pages/BookingSent.html");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
