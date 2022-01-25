@@ -1,0 +1,17 @@
+#container{
+    height: 90%;
+    width: 80%;
+    position: relative;
+    left: 10%;
+    top: 5%;
+}
+
+#message_area{
+    height: 90%;
+    width: 90%;
+    position: relative;
+    left: 5%;
+    top: 5%;
+    overflow: auto;
+    border: solid;
+}

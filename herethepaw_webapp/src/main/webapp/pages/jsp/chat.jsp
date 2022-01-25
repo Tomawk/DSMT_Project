@@ -11,16 +11,24 @@
     }
 %>
 <html>
-<head>
-    <title>HereThePaw Chat</title>
-    <script type = "text/javascript" src = "websocket_chat.js"></script>
-    <link href = "../../CSS/chat.css" rel = "stylesheet" type = "text/css">
-</head>
-<body onload="connect(<%=userRemoteEJB.getLogged_user().getUsername()%>)">
-    <div id = "container">
-        <div id = "message_area"></div>
-        <textarea placeholder = "Type your message here" type = "text" id = "typed_message"></textarea>
-        <button onclick = "send_message(<%=userRemoteEJB.getLogged_user().getUsername()%>)" type = "submit"> Invia Messaggio </button>
-    </div>
-</body>
+    <head>
+        <title>HereThePaw Chat</title>
+        <script type = "text/javascript" src = "websocket_chat.js"></script>
+        <link href = "../../CSS/chat.css" rel = "stylesheet" type = "text/css">
+    </head>
+    <body onload="connect(<%=userRemoteEJB.getLogged_user().getUsername()%>)" onunload="disconnect()">
+        <div id = "container">
+            <div id = "message_area"></div>
+            <div>
+                <label for="select_receiver">Select the online user to send the message to:</label>
+                <select name="select_receiver" id="select_receiver">
+                    <option value="choose-one" data-placeholder="true" id = "placeholder" disabled selected>Choose one...</option>
+                </select>
+            </div>
+            <div>
+                <textarea placeholder = "Type your message here" type = "text" id = "typed_message"></textarea>
+                <button onclick = "send_message()" type = "submit"> Invia Messaggio </button>
+            </div>
+        </div>
+    </body>
 </html>
