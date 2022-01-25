@@ -112,7 +112,7 @@
                                 <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review</strong></button>
                                 <div class="box" id="box_rating">
                                     <select name="rating" id="rating">
-                                        <option value="0" selected hidden>Choose rating</option>
+                                        <option value="0" selected hidden>Rating</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
