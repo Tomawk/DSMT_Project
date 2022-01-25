@@ -87,23 +87,33 @@
         <div id="review_list">
         <% for(ReviewDTO item:user_reviews){ %>
 
-        <p class="review_text">
-            <i class="fas fa-dog"></i><strong><%= item.getOwnerUsername()%>: </strong> <%=item.getText()%>
-            <br>
-            <i><%=item.getTimestamp()%></i>
-        </p>
+            <p class="review_text">
+                <i class="fas fa-dog"></i><strong><%= item.getOwnerUsername()%>: </strong>
+                <% if(item.getText().equals("")){ %>
+                <i>No text</i>
+                <%}
+                else%>
+                    <%= item.getText() %>
+                <br>
+                <i><%=item.getTimestamp()%></i>
+            </p>
+            <p class="rating_box">
+                <strong>  <%= item.getRating() %> </strong>
+            </p>
         <% } %>
+        </div>
             <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
-            </div>
+
                 <div class="container">
                     <form method="post" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
                         <textarea type="text" name="review" class="input" placeholder="Write a review" v-model="newItem" @keyup.enter=""></textarea>
                         <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
                         <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
-                        <button class='primaryContained float-right' type="submit">Add Review</button>
-                        <div class="box">
-                            <select name="rating">
-                                <option value="0">0</option>
+                        <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
+                        <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review</strong></button>
+                        <div class="box" id="box_rating">
+                            <select name="rating" id="rating">
+                                <option value="0" selected hidden>Choose rating</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -139,15 +149,17 @@
         <input type="hidden" name="pet_sitter_id" value="<%=target_user.getUser_id()%>">
         <input type="hidden" name="pet_sitter_us" value="<%=target_user.getUsername()%>">
         <input type="hidden" name="pet_owner_us" value="<%=userRemoteEJB.getLogged_user().getUsername()%>">
+        <div class="box" id="box_pets">
         <select name="pets" id="pets">
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
             <option value="rabbit">Rabbit</option>
             <option value="hamster">Hamster</option>
         </select>
-    <button id="confirm_book" onclick="book_btn_clicked()">Book now!</button>
+        </div>
     </form>
     </div>
+    <button id="confirm_book" onclick="book_btn_clicked()">Book now!</button>
 <% } %>
 
 
@@ -245,6 +257,15 @@ var calendar = $('#calendar-wrapper').calendar(defaultConfig);
             alert("All fields must me filled! Retry");
         }
 
+    }
+
+    function check_review_field(){
+        var select = document.getElementById("rating");
+        var option = select.options[select.selectedIndex].value;
+        if(option === "0"){
+            alert("You must choose a rating!");
+            return;
+        }
     }
 </script>
 </body>
