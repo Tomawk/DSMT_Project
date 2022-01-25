@@ -153,14 +153,13 @@ body {
     border-radius: 0.5vw;
     cursor: pointer;
     font-size: 1.3vw;
-    color: black;
+    color: #ffffff;
     font-family: 'Franklin Gothic Book', sans-serif;
     text-decoration: none;
 }
 
 .confirmation_search button:hover {
     opacity: 0.8;
-    text-decoration: underline;
 }
 
 hr{
