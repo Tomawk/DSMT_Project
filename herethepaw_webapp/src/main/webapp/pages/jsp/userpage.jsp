@@ -101,30 +101,39 @@
             </p>
         <% } %>
         </div>
-            <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
-
                 <div class="container">
-                    <form method="post" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
-                        <textarea type="text" name="review" class="input" placeholder="Write a review" v-model="newItem" @keyup.enter=""></textarea>
-                        <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
-                        <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
-                        <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
-                        <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review</strong></button>
-                        <div class="box" id="box_rating">
-                            <select name="rating" id="rating">
-                                <option value="0" selected hidden>Choose rating</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                    </form>
+
+                        <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
+                            <form method="post" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
+                                <textarea type="text" name="review" class="input" placeholder="Write a review"></textarea>
+                                <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+                                <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
+                                <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
+                                <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review</strong></button>
+                                <div class="box" id="box_rating">
+                                    <select name="rating" id="rating">
+                                        <option value="0" selected hidden>Choose rating</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </form>
+                            <% }
+                            else if(userRemoteEJB.getLogged_user() == null){%>
+                                <form action="http://localhost:8080/herethepaw_webapp/pages/jsp/login.jsp">
+                                    <button type="submit" id="button_login_to_review" class='primaryContained float-right'> <strong>Login to review</strong></button>
+                                </form>
+
+                            <%}%>
+
+
+
                 </div><!--End Container -->
 
             </div>
-        <% } %>
 
 
 <% } %>

@@ -53,7 +53,7 @@ body {
     right: 0.5vw;
     top: 6vw;
     background-color: rgba(255,255,255,0.5);
-    border-radius: 5px;
+    border-radius: 0.26vw;
     z-index: 300;
     width: 3vw;
     height: 9vw;
@@ -124,7 +124,7 @@ body {
     min-height: 38vw;
     font-family: Raleway, sans-serif;
     margin-top: 7.5%; /* -1/2 height */
-    border: 2px solid deepskyblue;
+    border: 0.104vw solid deepskyblue;
     background-color: whitesmoke;
     border-radius: 0.5vw;
     display: inline-block;
@@ -138,7 +138,7 @@ body {
     right: 5%;
     height: 38vw;
     font-family: Raleway, sans-serif;
-    border: 2px solid deepskyblue;
+    border: 0.104vw solid deepskyblue;
     border-radius: 0.5vw;
     background-color: whitesmoke;
     display: inline-block;
@@ -172,35 +172,40 @@ body {
 .commentClicked {
     min-height: 0px;
     border: 1px solid #eee;
-    border-radius: 5px;
-    padding: 5px 10px
+    border-radius: 0.26vw;
+    padding: 0.26vw 0.52vw
 }
 
 .container textarea {
     width: 100%;
     border: none;
     background: #E8E8E8;
-    padding: 5px 10px;
+    padding: 0.26vw 0.52vw;
     height: 5vw;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 2px solid #6fc8e7;
     transition: all 0.5s;
-    margin-top: 15px;
+    margin-top: 0.78vw;
 }
 
 button.primaryContained {
     background: deepskyblue;
     color: #fff;
-    padding: 10px 10px;
+    padding: 0.52vw 0.52vw;
     border: none;
-    margin-top: 0px;
     cursor: pointer;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
     transition: 1s all;
-    font-size: 15px;
+    font-size: 0.78vw;
     font-family: Raleway, sans-serif;
     border-radius: 5px;
 }
+
+#button_login_to_review{
+    margin-left: 50%;
+}
+
+
 
 button.primaryContained:hover {
     background: mediumspringgreen;
@@ -211,7 +216,7 @@ button.primaryContained:hover {
     width:30vw;
     word-break: normal;
     margin-left: 2%;
-    box-shadow: inset 10px 10px 5px #dedede;
+    box-shadow: inset 0.52vw 0.53vw 0.26vw #dedede;
 
 
 }
@@ -222,8 +227,8 @@ button.primaryContained:hover {
     border: 2px solid #ff6a00;
     background: #ff6a00;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 2.6vw;
+    height: 2.6vw;
     text-align: center;
     margin-left: 85%;
     box-shadow: inset 10px 10px 5px #dedede;
