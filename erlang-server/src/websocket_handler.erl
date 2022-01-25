@@ -24,7 +24,7 @@ websocket_handle({text, Message}, State) ->
       gen_server:cast(?SERVER, {logout, self()});
 
     First_param == "&PING" ->
-      ok;
+      gen_server:cast(?SERVER, {online_users, self()});
 
     true ->
       % L'utente ha inviato un messaggio

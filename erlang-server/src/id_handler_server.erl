@@ -21,6 +21,10 @@ handle_call({retrieve_pid, NickName}, _From, Users) ->
   Response = ets:lookup(Users, NickName),
   {reply, Response, Users};
 
+handle_call({online_users}, _From, Users) ->
+  Response = list_online_users(Users),
+  {reply, Response, Users};
+
 handle_call(_Message, _From, State) ->
   {reply, error, State}.
 
@@ -33,3 +37,16 @@ check_and_insert_nick(NickName, Pid, Users) ->
     true -> ok;
     false -> nickname_in_use
   end.
+
+list_online_users(Users) ->
+  Users_list = ets:tab2list(Users),
+  String_users_list = create_string_list(Users_list),
+  String_users_list.
+
+create_string_list([{NickName, _}|T], Result) ->
+  create_string_list(T, Result ++ NickName ++ "|");
+create_string_list([], Result) ->
+  Result.
+
+create_string_list(UsersList) ->
+  create_string_list(UsersList, "").

@@ -6,7 +6,7 @@ const PING = "&PING";
 
 var username = "";
 
-const server_url = "ws://localhost:3307"
+const server_url = "ws://localhost:3307";
 
 var id_timer = null;
 
@@ -39,20 +39,25 @@ function print_message(sender_name, message) {
         "/" + data.getFullYear();
     //TODO: stampare in pagina html
     if(sender_name == null){
-        // messaggio dal server
+        // messaggio inviato dal server
     } else {
         // messaggio da un altro utente
     }
 }
 
 function ws_onMessage(event) {
-    const message_fields = event.data.split(':');
+    var message_fields = event.data.split(':');
     if(message_fields.length === 2){
         //normale messaggio inviato da un altro utente
         print_message(message_fields[0], message_fields[1]);
     } else {
-        // semplice stringa di risposta
-        print_message(null, event.data);
+        message_fields = event.data.split('|');
+        if(message_fields.length > 1){
+            //the new online users list is arrived
+        } else {
+            // semplice stringa di risposta
+            print_message(null, event.data);
+        }
     }
 }
 
@@ -68,4 +73,9 @@ function connect(logging_user){
 function disconnect(){
     websocket.send(LOGOUT);
     websocket.close();
+}
+
+function send_message(){
+    var message_text = document.getElementById("typed_message").value;
+    websocket.send(message_text);
 }

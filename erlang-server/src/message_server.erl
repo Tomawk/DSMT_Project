@@ -50,7 +50,11 @@ handle_cast({send_message, {Pid_sender, {Receiver_NickName, Sender_NickName}, Me
     [{_,Pid}] ->
       FormattedMessage = format_message(Sender_NickName, MessageText),
       Pid ! {send_message, Pid_sender, FormattedMessage}
-  end.
+  end;
+
+handle_cast({online_users, Pid}, State) ->
+  Response = gen_server:call(?ID_HANDLER, {online_users}),
+  send(Pid, Response, []).
 
 
 quit(Pid, _S) ->
@@ -59,7 +63,7 @@ quit(Pid, _S) ->
   gen_server:call(?ID_HANDLER, {logout, Pid}).
 
 
-% invia una semplice stringa, utilizzata solo per rispondere direttamente
+% invia una semplice stringa, utilizzata solo per inviare messaggi generati dal server
 send(Pid, Str, Args) ->
   io:format("~p send! ~n",[Str]),
   Pid ! {send_message, self(), io_lib:format(Str++"~n", Args)},
