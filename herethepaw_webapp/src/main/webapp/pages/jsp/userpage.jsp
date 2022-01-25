@@ -97,7 +97,7 @@
                 <i><%=item.getTimestamp()%></i>
             </p>
             <p class="rating_box">
-                <strong>  <%= item.getRating() %> </strong>
+                <strong style="position:relative; top:0.5vw; font-weight: normal; font-size: 1vw;"><%=item.getRating()%><i class="fas fa-star"></i></strong>
             </p>
         <% } %>
         </div>
@@ -109,7 +109,7 @@
                                 <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
                                 <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
                                 <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
-                                <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review</strong></button>
+                                <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review&nbsp;<i class="far fa-edit"></i></strong></button>
                                 <div class="box" id="box_rating">
                                     <select name="rating" id="rating">
                                         <option value="0" selected hidden>Rating</option>
