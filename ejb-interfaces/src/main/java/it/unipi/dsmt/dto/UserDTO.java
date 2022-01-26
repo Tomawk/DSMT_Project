@@ -114,7 +114,7 @@ public class UserDTO implements Serializable {
         this.email = email;
     }
 
-    public List<String> getPets() {
+    public ArrayList<String> getPets() {
         return pets;
     }
 

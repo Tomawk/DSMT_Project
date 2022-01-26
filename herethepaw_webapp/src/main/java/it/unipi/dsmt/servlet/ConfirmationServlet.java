@@ -15,15 +15,14 @@ import java.sql.SQLException;
 public class ConfirmationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         boolean accepted = true;
-        String booking_id = request.getParameter("booking_id");
+        String  booking_id = request.getParameter("booking_id");
         if(request.getParameter("accept_btn") == null){
             accepted = false;
         }
         BookingRemote bookingRemoteEJB;
         try {
             bookingRemoteEJB = new BookingRemoteEJB();
-            BookingDTO bookingDTO = bookingRemoteEJB.getBooking(booking_id);
-            bookingRemoteEJB.removePendingBooking(bookingDTO,accepted);
+            bookingRemoteEJB.removePendingBooking(booking_id,accepted);
         } catch (NamingException | SQLException e) {
             System.out.println(e);
             e.printStackTrace();

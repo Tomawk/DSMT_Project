@@ -23,8 +23,8 @@
 <%
     UserRemote userRemoteEJB = new UserRemoteEJB();
     BookingRemote bookingRemoteEJB = new BookingRemoteEJB();
-    ArrayList<BookingDTO> pending_booking_list = bookingRemoteEJB.displayPendingBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter());
-    ArrayList<BookingDTO> confirmed_booking_list = bookingRemoteEJB.displayConfirmedBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter());
+    ArrayList<BookingDTO> pending_booking_list = bookingRemoteEJB.displayBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter(),true);
+    ArrayList<BookingDTO> confirmed_booking_list = bookingRemoteEJB.displayBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter(),false);
 %>
 <nav class="topnav">
 <img src="../../images/HereThePaw_Logo.png" alt="logo">

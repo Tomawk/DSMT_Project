@@ -159,10 +159,9 @@
         <input type="hidden" name="pet_owner_us" value="<%=userRemoteEJB.getLogged_user().getUsername()%>">
         <div class="box" id="box_pets">
         <select name="pets" id="pets">
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-            <option value="rabbit">Rabbit</option>
-            <option value="hamster">Hamster</option>
+            <% for(int i = 0; i<target_user.getPets().size(); i++) { %>
+            <option value="<%=target_user.getPets().get(i)%>"><%=target_user.getPets().get(i)%></option>
+            <% } %>
         </select>
         </div>
     </form>
