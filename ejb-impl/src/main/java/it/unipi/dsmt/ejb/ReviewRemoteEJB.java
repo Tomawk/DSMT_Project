@@ -50,7 +50,7 @@ public class ReviewRemoteEJB implements ReviewRemote {
 
         con.close();
     }
-    
+
 
     @Override
     public float computeAvgRating(String petSitter) throws SQLException {;
