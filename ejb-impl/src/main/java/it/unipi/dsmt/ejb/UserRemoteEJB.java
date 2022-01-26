@@ -8,10 +8,7 @@ import javax.ejb.Stateless;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -78,9 +75,16 @@ public class UserRemoteEJB implements UserRemote {
 
     @Override
     public void loginUser(String username, String password) throws SQLException {
-        Users user = entityManager.createQuery(
-                "SELECT u from Users u WHERE u.username = :username", Users.class).
-                setParameter("username", username).getSingleResult();
+        Users user = null;
+
+        try{
+            user = entityManager.createQuery(
+                    "SELECT u from Users u WHERE u.username = :username", Users.class).
+                    setParameter("username", username).getSingleResult();
+        } catch (NoResultException e){
+            return;
+        }
+
         if(user.getPassword().equals(password)){
             Connection con = dataSource.getConnection();
             Statement stmt = con.createStatement();
