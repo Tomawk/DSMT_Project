@@ -275,7 +275,7 @@ var calendar = $('#calendar-wrapper').calendar(defaultConfig);
             return false;
         }
         return true;
-       
+
     }
 </script>
 </body>
