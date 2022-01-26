@@ -15,8 +15,38 @@
         <title>HereThePaw Chat</title>
         <script type="text/javascript" src="../../javascript/websocket_chat.js"></script>
         <link href = "../../CSS/chat.css" rel = "stylesheet" type = "text/css">
+        <link href="../../CSS/index.css" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
     </head>
     <body onload="connect('<%=userRemoteEJB.getLogged_user().getUsername()%>')" onunload="disconnect()">
+    <nav class="topnav">
+        <img src="images/HereThePaw_Logo.png" alt="logo">
+        <table>
+            <tr>
+                <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
+                <% if(userRemoteEJB.getLogged_user() != null) { %>
+                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+                <td><a href="">Logout</a></td>
+                <td><a href="">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
+                <% } else { %>
+                <td><a href="">Login</a></td>
+                <% } %>
+            </tr>
+        </table>
+    </nav>
+    <aside class="rightnav">
+        <table>
+            <tr>
+                <td id="facebook"></td>
+            </tr>
+            <tr>
+                <td id="instagram"></td>
+            </tr>
+            <tr>
+                <td id="google"></td>
+            </tr>
+        </table>
+    </aside>
         <div id = "container">
             <div id = "message_area"></div>
             <div>
