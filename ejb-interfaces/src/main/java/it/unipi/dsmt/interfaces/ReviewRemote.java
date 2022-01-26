@@ -13,7 +13,6 @@ public interface ReviewRemote {
 
     void insertReview(String owner, String pet_sitter, String text, int rating) throws SQLException;
 
-    void deleteReview(int reviewId) throws SQLException;
 
     float computeAvgRating(String petSitter) throws SQLException;
 }

@@ -53,19 +53,6 @@ public class ReviewRemoteEJB implements ReviewRemote {
 
 
     @Override
-    public void deleteReview(int reviewId) throws SQLException {
-
-        Connection con = dataSource.getConnection();
-
-        String query = "DELETE FROM review WHERE id = ?";
-        PreparedStatement preparedStmt = con.prepareStatement(query);
-        preparedStmt.setInt(1, reviewId);
-
-        preparedStmt.execute();
-        con.close();
-    }
-
-    @Override
     public float computeAvgRating(String petSitter) throws SQLException {;
         Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();

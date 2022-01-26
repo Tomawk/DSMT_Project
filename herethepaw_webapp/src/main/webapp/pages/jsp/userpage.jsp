@@ -104,12 +104,12 @@
                 <div class="container">
 
                         <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
-                            <form method="post" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
+                            <form method="post" onsubmit="return check_review_field()" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
                                 <textarea type="text" name="review" class="input" placeholder="Write a review"></textarea>
                                 <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
                                 <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
                                 <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
-                                <button class='primaryContained float-right' type="submit" onclick="check_review_field()"> <strong>Add Review&nbsp;<i class="far fa-edit"></i></strong></button>
+                                <button class='primaryContained float-right' type="submit"> <strong>Add Review&nbsp;<i class="far fa-edit"></i></strong></button>
                                 <div class="box" id="box_rating">
                                     <select name="rating" id="rating">
                                         <option value="0" selected hidden>Rating</option>
@@ -272,8 +272,10 @@ var calendar = $('#calendar-wrapper').calendar(defaultConfig);
         var option = select.options[select.selectedIndex].value;
         if(option === "0"){
             alert("You must choose a rating!");
-            return;
+            return false;
         }
+        return true;
+
     }
 </script>
 </body>

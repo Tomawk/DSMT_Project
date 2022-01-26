@@ -13,10 +13,10 @@
 <html>
     <head>
         <title>HereThePaw Chat</title>
-        <script type = "text/javascript" src = "websocket_chat.js"></script>
+        <script type="text/javascript" src="../../javascript/websocket_chat.js"></script>
         <link href = "../../CSS/chat.css" rel = "stylesheet" type = "text/css">
     </head>
-    <body onload="connect(<%=userRemoteEJB.getLogged_user().getUsername()%>)" onunload="disconnect()">
+    <body onload="connect('<%=userRemoteEJB.getLogged_user().getUsername()%>')" onunload="disconnect()">
         <div id = "container">
             <div id = "message_area"></div>
             <div>
