@@ -25,6 +25,10 @@ handle_call({online_users}, _From, Users) ->
   Response = list_online_users(Users),
   {reply, Response, Users};
 
+handle_call({logout, Pid}, _From, Users) ->
+  Response = ets:match_delete(Users, {'_', Pid}),
+  {reply, Response, Users};
+
 handle_call(_Message, _From, State) ->
   {reply, error, State}.
 
@@ -44,7 +48,7 @@ list_online_users(Users) ->
   String_users_list.
 
 create_string_list([{NickName, _}|T], Result) ->
-  create_string_list(T, Result ++ NickName ++ "|");
+  create_string_list(T, Result ++ binary_to_list(NickName) ++ "|");
 create_string_list([], Result) ->
   Result.
 
