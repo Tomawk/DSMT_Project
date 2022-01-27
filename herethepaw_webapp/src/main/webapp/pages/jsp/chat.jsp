@@ -2,6 +2,7 @@
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="javax.naming.NamingException" %>
+<%@ page import="java.net.InetAddress" %>
 <%
     UserRemote userRemoteEJB = null;
     try {
@@ -9,6 +10,7 @@
     } catch (NamingException e) {
         e.printStackTrace();
     }
+    String actual_ip = InetAddress.getLocalHost().getHostAddress();
 %>
 <html>
     <head>

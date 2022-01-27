@@ -5,6 +5,7 @@
 <%@ page import="it.unipi.dsmt.dto.ReviewDTO" %>
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="it.unipi.dsmt.interfaces.ReviewRemote" %>
+<%@ page import="java.net.InetAddress" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,7 @@
     UserDTO target_user = userRemoteEJB.getUser(requested_user);
     ReviewRemote reviewRemoteEJB = new ReviewRemoteEJB();
     ArrayList<ReviewDTO> user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
+    String actual_ip = InetAddress.getLocalHost().getHostAddress();
     %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
@@ -104,7 +106,7 @@
                 <div class="container">
 
                         <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
-                            <form method="post" onsubmit="return check_review_field()" id="review" action="http://localhost:8080/herethepaw_webapp/new_review">
+                            <form method="post" onsubmit="return check_review_field()" id="review" action="http://<%= actual_ip%>:8080/herethepaw_webapp/new_review"> <!-- TODO CHANGE PATH IF REQUIRED -->
                                 <textarea type="text" name="review" class="input" placeholder="Write a review"></textarea>
                                 <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
                                 <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
@@ -123,7 +125,7 @@
                             </form>
                             <% }
                             else if(userRemoteEJB.getLogged_user() == null){%>
-                                <form action="http://localhost:8080/herethepaw_webapp/pages/jsp/login.jsp">
+                                <form action="http://<%= actual_ip%>:8080/herethepaw_webapp/pages/jsp/login.jsp">
                                     <button type="submit" id="button_login_to_review" class='primaryContained float-right'> <strong>Login to review</strong></button>
                                 </form>
 
@@ -152,7 +154,7 @@
     </div>
     <div id="selected_pet">
         <p id="pet_info"> Please select your pet&nbsp;<i class="fas fa-arrow-circle-down"></i></p>
-    <form method="post" id="book_form" action="http://localhost:8080/herethepaw_webapp/book_petsitter">
+    <form method="post" id="book_form" action="http://<%=actual_ip%>:8080/herethepaw_webapp/book_petsitter">
         <input type="hidden" name="pet_owner_id" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
         <input type="hidden" name="pet_sitter_id" value="<%=target_user.getUser_id()%>">
         <input type="hidden" name="pet_sitter_us" value="<%=target_user.getUsername()%>">

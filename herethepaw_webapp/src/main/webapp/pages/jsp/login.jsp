@@ -1,3 +1,4 @@
+<%@ page import="java.net.InetAddress" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,11 +32,12 @@
         </tr>
     </table>
 </aside>
+<% String actual_ip = InetAddress.getLocalHost().getHostAddress(); %>
 <div id="center_div">
     <div class="imgdiv">
         <img src="../../images/vertical_logo.png" alt="Avatar" class="avatar">
     </div>
-    <form method="post" name="login" action="http://localhost:8080/herethepaw_webapp/login"> <!-- TODO CHANGE IF REQUIRED -->
+    <form method="post" name="login" action="http://<%= actual_ip %>:8080/herethepaw_webapp/login"> <!-- TODO CHANGE IF REQUIRED -->
         <label><b>Username</b></label>
         <input type="text" placeholder="Insert Username" name="username" class="input" required>
         <label><b>Password</b></label>

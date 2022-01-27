@@ -3,7 +3,8 @@
 <%@ page import="it.unipi.dsmt.interfaces.BookingRemote" %>
 <%@ page import="it.unipi.dsmt.ejb.BookingRemoteEJB" %>
 <%@ page import="it.unipi.dsmt.dto.BookingDTO" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.net.InetAddress" %><%--
   Created by IntelliJ IDEA.
   User: Tommy
   Date: 24/01/2022
@@ -25,6 +26,7 @@
     BookingRemote bookingRemoteEJB = new BookingRemoteEJB();
     ArrayList<BookingDTO> pending_booking_list = bookingRemoteEJB.displayBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter(),true);
     ArrayList<BookingDTO> confirmed_booking_list = bookingRemoteEJB.displayBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter(),false);
+    InetAddress actual_ip = InetAddress.getLocalHost();
 %>
 <nav class="topnav">
 <img src="../../images/HereThePaw_Logo.png" alt="logo">
@@ -67,7 +69,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <strong>Pet&nbsp;<i class="fas fa-paw"></i>:&nbsp;</strong><%=item.getPet()%>
             <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
-            <form method="post" action="http://localhost:8080/herethepaw_webapp/confirm_booking">
+            <form method="post" action="http://" + <%= actual_ip.toString()%> +":8080/herethepaw_webapp/confirm_booking">
                 <input type="hidden" name="booking_id" value="<%=item.getBooking_id()%>">
                 <button id="accept_btn" name="accept_btn" type="submit"> Accept </button>
                 <button id="decline_btn" name="decline_btn" type="submit"> Decline </button>

@@ -4,6 +4,7 @@
 <%@ page import="it.unipi.dsmt.ejb.ReviewRemoteEJB" %>
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="it.unipi.dsmt.interfaces.ReviewRemote" %>
+<%@ page import="java.net.InetAddress" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
