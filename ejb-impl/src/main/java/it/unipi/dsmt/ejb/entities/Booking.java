@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name="confirmed_booking")
-public class ConfirmedBooking implements Serializable {
+@Table(name="booking")
+public class Booking implements Serializable {
     @Id
     @Column(name="id_")
     private Integer id;

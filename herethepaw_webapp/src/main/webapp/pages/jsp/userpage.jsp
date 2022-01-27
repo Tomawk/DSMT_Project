@@ -6,6 +6,8 @@
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="it.unipi.dsmt.interfaces.ReviewRemote" %>
 <%@ page import="java.net.InetAddress" %>
+<%@ page import="it.unipi.dsmt.interfaces.BookingRemote" %>
+<%@ page import="it.unipi.dsmt.ejb.BookingRemoteEJB" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,11 +25,13 @@
 <%
     String requested_user = request.getParameter("username");
     UserRemote userRemoteEJB = new UserRemoteEJB();
+    BookingRemote bookingRemoteEJB = new BookingRemoteEJB();
     UserDTO target_user = userRemoteEJB.getUser(requested_user);
     ReviewRemote reviewRemoteEJB = new ReviewRemoteEJB();
     ArrayList<ReviewDTO> user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
     String actual_ip = InetAddress.getLocalHost().getHostAddress();
-    %>
+    UserDTO logged_user = userRemoteEJB.getLogged_user();
+%>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
     <table>
@@ -105,24 +109,29 @@
         </div>
                 <div class="container">
 
-                        <% if(userRemoteEJB.getLogged_user() != null && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
-                            <form method="post" onsubmit="return check_review_field()" id="review" action="http://<%= actual_ip%>:8080/herethepaw_webapp/new_review"> <!-- TODO CHANGE PATH IF REQUIRED -->
-                                <textarea type="text" name="review" class="input" placeholder="Write a review"></textarea>
-                                <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
-                                <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
-                                <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
-                                <button class='primaryContained float-right' type="submit"> <strong>Add Review&nbsp;<i class="far fa-edit"></i></strong></button>
-                                <div class="box" id="box_rating">
-                                    <select name="rating" id="rating">
-                                        <option value="0" selected hidden>Rating</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                </div>
-                            </form>
+                        <% if(logged_user != null && !logged_user.isPetsitter()) { %>
+                            <% if(bookingRemoteEJB.searchBooking(logged_user.getUser_id(), target_user.getUser_id())) { %>
+                                <form method="post" onsubmit="return check_review_field()" id="review" action="http://<%= actual_ip%>:8080/herethepaw_webapp/new_review"> <!-- TODO CHANGE PATH IF REQUIRED -->
+                                    <textarea type="text" name="review" class="input" placeholder="Write a review"></textarea>
+                                    <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+                                    <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
+                                    <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
+                                    <button class='primaryContained float-right' type="submit"> <strong>Add Review&nbsp;<i class="far fa-edit"></i></strong></button>
+                                    <div class="box" id="box_rating">
+                                        <select name="rating" id="rating">
+                                            <option value="0" selected hidden>Rating</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </div>
+                                </form>
+
+                                <%} else { %>
+                                     <strong> Make a booking to be able to review</strong>
+                                <%}%>
                             <% }
                             else if(userRemoteEJB.getLogged_user() == null){%>
                                 <form action="http://<%= actual_ip%>:8080/herethepaw_webapp/pages/jsp/login.jsp">

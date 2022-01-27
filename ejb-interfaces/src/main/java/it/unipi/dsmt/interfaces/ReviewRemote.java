@@ -15,4 +15,5 @@ public interface ReviewRemote {
 
 
     float computeAvgRating(String petSitter) throws SQLException;
+
 }
