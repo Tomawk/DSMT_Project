@@ -59,7 +59,7 @@
             </div>
             <div>
                 <textarea placeholder = "Type your message here" type = "text" id = "typed_message"></textarea>
-                <button onclick = "send_message()" type = "submit"> Invia Messaggio </button>
+                <button onclick = "send_message()" type = "submit">Send Message</button>
             </div>
         </div>
     </body>
