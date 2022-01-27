@@ -2,7 +2,7 @@
 -behaviour(gen_server).
 
 %% API
--export([init/1, handle_cast/2, handle_call/3]).
+-export([start_link/0, init/1, handle_cast/2, handle_call/3, format_message/2]).
 -include("chat.hrl").
 
 
@@ -32,29 +32,30 @@ handle_cast({logout, Pid}, State) ->
   quit(Pid, State),
   {noreply, State};
 
+handle_cast({send_message, {Pid_sender, {Receiver_NickName, Sender_NickName}, Message_Text}}, State) ->
+  case gen_server:call(?ID_HANDLER, {retrieve_pid, Receiver_NickName}) of
+    [] ->
+      Pid_sender ! {send_message, Pid_sender,"User not available."};
+    [{_,Pid}] ->
+      FormattedMessage = format_message(Sender_NickName, Message_Text),
+      Pid ! {send_message, Pid_sender, FormattedMessage}
+  end,
+  {noreply, State};
+
 handle_cast({login, {Pid, NickName}}, State) ->
   Reply = gen_server:call(?ID_HANDLER, {insert_user, NickName, Pid}),
   case Reply of
     nickname_in_use ->
-      send(Pid, "The chosen NickName is already in use", []),
-      {noreply, State};
+      send(Pid, "The chosen NickName is already in use", []);
     ok ->
-      send(Pid, "~p Welcome in the chat!", [NickName]),
-      {noreply, State}
-  end;
-
-handle_cast({send_message, {Pid_sender, {Receiver_NickName, Sender_NickName}, MessageText}}, State) ->
-  case gen_server:call(?ID_HANDLER, {retrieve_pid, Receiver_NickName}) of
-    [] ->
-      Pid_sender ! {send_message, Pid_sender,"Users not available."};
-    [{_,Pid}] ->
-      FormattedMessage = format_message(Sender_NickName, MessageText),
-      Pid ! {send_message, Pid_sender, FormattedMessage}
-  end;
+      send(Pid, "~p Welcome in the chat!", [binary_to_list(NickName)])
+  end,
+  {noreply, State};
 
 handle_cast({online_users, Pid}, State) ->
   Response = gen_server:call(?ID_HANDLER, {online_users}),
-  send(Pid, Response, []).
+  send(Pid, Response, []),
+  {noreply, State}.
 
 
 quit(Pid, _S) ->
@@ -72,7 +73,7 @@ send(Pid, Str, Args) ->
 % ---------- UTILITY ------------
 
 format_message(NickName, Message) ->
-  FormattedMsg = NickName ++ ":" ++ Message,
+  FormattedMsg = binary_to_list(NickName) ++ ":" ++ binary_to_list(Message),
   FormattedMsg.
 
 %format_time() ->

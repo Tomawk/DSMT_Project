@@ -1,7 +1,7 @@
 -module(message_server_sup).
 -behaviour(supervisor).
 %% API
--export([init/1]).
+-export([start_link/0, init/1]).
 -include("chat.hrl").
 
 start_link() ->

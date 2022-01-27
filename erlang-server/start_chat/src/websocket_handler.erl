@@ -14,16 +14,16 @@ websocket_handle({text, Message}, State) ->
   Last_param = lists:last(Param_list),
 
   if
-    First_param == "&LOGIN" ->
+    First_param == <<"&LOGIN">> ->
       % L'utente ha fatto l'accesso alla pagina di chat
       NickName = Last_param,
       gen_server:cast(?SERVER, {login, {self(), NickName}});
 
-    First_param == "&LOGOUT" ->
+    First_param == <<"&LOGOUT">> ->
       % L'utente non vuole piu chattare
       gen_server:cast(?SERVER, {logout, self()});
 
-    First_param == "&PING" ->
+    First_param == <<"&PING">> ->
       gen_server:cast(?SERVER, {online_users, self()});
 
     true ->
@@ -33,7 +33,7 @@ websocket_handle({text, Message}, State) ->
       Receiver_NickName = Last_param,
       % il secondo parametro è il mittente
       Sender_NickName = lists:nth(2, Param_list),
-      gen_server:cast(?SERVER, {send_messsage, {self(), {Receiver_NickName, Sender_NickName}, MessageText}})
+      gen_server:cast(?SERVER, {send_message, {self(), {Receiver_NickName, Sender_NickName}, MessageText}})
   end,
   {ok, State};
 websocket_handle(_Data, State) ->

@@ -53,15 +53,17 @@ function print_message(sender_name, message, receiver = null) {
 
 function update_online_users(users_list) {
     //flush of all the options
-    var select_block = document.getElementById("select_receiver")
-    while(select_block.lastChild.getAttribute("id") !== "placeholder")
+    var select_block = document.getElementById("select_receiver");
+    while(select_block.lastChild.id != select_block.firstChild.id)
         select_block.removeChild(select_block.lastChild);
-    //inserti new list
+    //insert new list
     document.getElementById("placeholder").setAttribute("selected", "true");
     var option;
     var option_text;
     for(var i = 0; i < users_list.length - 1; ++i){
-        option = document.createElement("option");
+        if(users_list[i] === username)
+		continue;	//the logged user can not send a message to himself!
+	option = document.createElement("option");
         option.setAttribute("id", users_list[i]);
         option.setAttribute("value", users_list[i]);
         option.setAttribute("class", "online_user");
@@ -101,7 +103,7 @@ function ws_onMessage(event) {
     } else {
         message_fields = event.data.split('|');
         if(message_fields.length > 1){
-            //the new online users list is arrived
+	    //the new online users list is arrived
             update_online_users(message_fields);
         } else {
             // semplice stringa di risposta
@@ -112,6 +114,7 @@ function ws_onMessage(event) {
 
 //logging_user is the username of the user that is entering in the chat page
 function connect(logging_user){
+	//alert(logging_user);
     username = logging_user;
     websocket = new WebSocket(server_url);
     websocket.onopen = function(){ws_onOpen()};
@@ -127,7 +130,7 @@ function disconnect(){
 function send_message(){
     const message_text = document.getElementById("typed_message").value;
     const receiver_index = document.getElementById("select_receiver").selectedIndex;
-    const receiver_username = document.getElementById("select_receiver").options[receiver_index];
+    const receiver_username = document.getElementById("select_receiver").options[receiver_index].value;
     websocket.send(message_text + ":" + username + ":" + receiver_username);
     print_message(null, message_text, receiver_username);
 }
