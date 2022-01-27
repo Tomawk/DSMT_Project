@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <title>User page</title>
     <link href="../../CSS/requests.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
+    <link href="../../fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
 <%

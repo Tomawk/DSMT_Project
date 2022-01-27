@@ -7,7 +7,7 @@
     <title>HereThePaw Petsitters</title>
     <link rel="icon" href="images/paw_icon.png" sizes="32x32">
     <link href="CSS/index.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
+    <link href="fontawesome/css/all.css" rel="stylesheet"> 
 </head>
 <body>
 <nav class="topnav">

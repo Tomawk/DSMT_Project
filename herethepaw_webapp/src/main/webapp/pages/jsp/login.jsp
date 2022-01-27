@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Login Required</title>
     <link href="../../CSS/login.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
+    <link href="../../fontawesome/css/all.css" rel="stylesheet">
+<!--
+    <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script> -->
 </head>
 <body>
 <nav class="topnav">

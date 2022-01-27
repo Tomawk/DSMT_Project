@@ -16,7 +16,7 @@
         <script type="text/javascript" src="../../javascript/websocket_chat.js"></script>
         <link href = "../../CSS/chat.css" rel = "stylesheet" type = "text/css">
         <link href="../../CSS/index.css" rel="stylesheet" type="text/css">
-        <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
+        <link href="../../fontawesome/css/all.css" rel="stylesheet">
     </head>
     <body onload="connect('<%=userRemoteEJB.getLogged_user().getUsername()%>')" onunload="disconnect()">
     <nav class="topnav">

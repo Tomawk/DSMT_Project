@@ -13,10 +13,10 @@
     <title>User page</title>
     <link href="CSS/userpage.css" rel="stylesheet" type="text/css">
     <link href="CSS/calendar.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/a30f811c28.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jquery/jquery@3.2.1/dist/jquery.min.js"></script>
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <script src="javascript/jquery.min.js"></script>
     <!-- change to relative path -> something like this <script src="/javascript/calendar.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/gh/wrick17/calendar-plugin@master/calendar.min.js"></script>
+    <script src="javascript/calendar.min.js"></script>
 </head>
 <body>
 <%
