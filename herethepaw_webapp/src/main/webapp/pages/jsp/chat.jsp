@@ -67,7 +67,7 @@
                         if(item.getUsername().equals(userRemoteEJB.getLogged_user().getUsername()))
                             continue;
                 %>
-                <div class = "chatbox_user" class = 'chatbox__user--busy' id = "<%=item.getUsername()%>">
+                <div class = 'chatbox__user--busy' id = "<%=item.getUsername()%>">
                     <p><%=item.getUsername()%></p>
                 </div>
                 <%
