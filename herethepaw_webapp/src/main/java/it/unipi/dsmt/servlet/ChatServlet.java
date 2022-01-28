@@ -27,7 +27,7 @@ public class ChatServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String targetJSP = "/pages/jsp/chat_test.jsp";
+        String targetJSP = "/pages/jsp/chat.jsp";
         if(userRemote.getLogged_user() == null)
             targetJSP = "pages/jsp/login.jsp";
         RequestDispatcher requestDispatcher = request.getRequestDispatcher(targetJSP);
