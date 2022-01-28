@@ -152,6 +152,11 @@ function send_message(event){
         document.getElementById("text_input").value = "";
         return false;
     }
+    if(message_text == ""){
+        print_message(null, "You must write something!", null);
+        document.getElementById("text_input").value = "";
+        return false;
+    }
     websocket.send(message_text + ":" + username + ":" + receiver_username);
     print_message(null, message_text, receiver_username);
     document.getElementById("text_input").value = "";
