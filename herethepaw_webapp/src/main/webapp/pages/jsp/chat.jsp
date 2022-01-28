@@ -18,11 +18,11 @@
 <html>
     <head>
         <title>HereThePaw Chat</title>
-        <script type="text/javascript" src="../../javascript/websocket_chat.js"></script>
-        <link href = "../../CSS/chat_test.css" rel = "stylesheet" type = "text/css">
-        <link href = "../../CSS/chat.css" rel = "stylesheet" type = "text/css">
-        <link href="../../CSS/index.css" rel="stylesheet" type="text/css">
-        <link href="../../fontawesome/css/all.css" rel="stylesheet">
+        <link href = "CSS/chat_test.css" rel = "stylesheet" type = "text/css">
+        <link href = "CSS/chat.css" rel = "stylesheet" type = "text/css">
+        <link href="CSS/index.css" rel="stylesheet" type="text/css">
+        <link href="fontawesome/css/all.css" rel="stylesheet">
+        <script type="text/javascript" src="javascript/websocket_chat.js"></script>
     </head>
     <body onload="connect('<%=userRemoteEJB.getLogged_user().getUsername()%>')" onunload="disconnect()">
     <nav class="topnav">
