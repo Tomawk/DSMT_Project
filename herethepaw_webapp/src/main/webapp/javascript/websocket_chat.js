@@ -57,13 +57,10 @@ function update_online_users(users_list) {
     while(select_block.lastChild.id != select_block.firstChild.id)
         select_block.removeChild(select_block.lastChild);
     //insert new list
-    document.getElementById("placeholder").setAttribute("selected", "true");
-    var all_users_list = document.getElementById("user_list").childNodes;
-    for(var i = 1; i < all_users_list.length; i++){
-        if(all_users_list[i].classList.contains("chatbox__user--active")){
-            all_users_list[i].classList.remove("chatbox__user--active");
-        }
-        all_users_list[i].classList.add("chatbox__user--busy");
+    document.getElementById("placeholder").selected = "selected";
+    var all_users_list = document.getElementsByName("chatbox_user")
+    for(var i = 0; i < all_users_list.length; i++){
+        all_users_list[i].setAttribute("class", "chatbox__user--busy");
     }
     var option;
     var option_text;
@@ -78,8 +75,7 @@ function update_online_users(users_list) {
         option.append(option_text);
         select_block.append(option);
         //update online users in the list of all the users
-        document.getElementById(users_list[i]).classList.remove("chatbox__user--busy");
-        document.getElementById(users_list[i]).classList.add("chatbox__user--active");
+        document.getElementById(users_list[i]).setAttribute("class", "chatbox__user--active");
     }
 }
 
