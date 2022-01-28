@@ -19,36 +19,36 @@ function print_message(sender_name, message, receiver = null) {
         " " + data.getDay() + "" +
         "/" + data.getMonth() + "" +
         "/" + data.getFullYear();
-    var p = document.createElement("p");
-    var p_from;
-    var p_text;
+    var externDiv = document.createElement("div");
+    externDiv.setAttribute("class", "chatbox__messages__user-message");
+    var messageDiv = document.createElement("div");
+    var p_name = document.createElement("p");
+    var p_name_text;
+    var p_message = document.createElement("p");
+    var p_message_text;
     if(receiver != null) {
-        p_from = document.createTextNode("Sent to " + receiver + ":");
-        p_text = document.createTextNode(message);
-        p.appendChild(p_from);
-        p.appendChild(document.createElement("br"));
-        p.appendChild(p_text);
-        p.setAttribute("class", "sent_message");
+        messageDiv.setAttribute("class", "chatbox__messages__user-message--right-message");
+        p_name_text = document.createTextNode("Sent to " + receiver + ":");
+        p_message_text = document.createTextNode(message);
     } else {
+        messageDiv.setAttribute("class", "chatbox__messages__user-message--left-message");
         if (sender_name == null) {
             // messaggio inviato dal server
-            p_from = document.createTextNode("From: System");
-            p_text = document.createTextNode(message);
-            p.appendChild(p_from);
-            p.appendChild(document.createElement("br"));
-            p.appendChild(p_text);
-            p.setAttribute("class", "system_message");
+            p_name_text = document.createTextNode("From: System");
+            p_message_text = document.createTextNode(message);
         } else {
             // messaggio da un altro utente
-            p_from = document.createTextNode("From: " + sender_name);
-            p_text = document.createTextNode(message);
-            p.appendChild(p_from);
-            p.appendChild(document.createElement("br"));
-            p.appendChild(p_text);
-            p.setAttribute("class", "arrived_message");
+            p_name_text = document.createTextNode("From: " + sender_name);
+            p_message_text = document.createTextNode(message);
         }
     }
-    document.getElementById("message_area").appendChild(p);
+    p_name.appendChild(p_name_text);
+    p_message.appendChild(p_message_text);
+    messageDiv.appendChild(p_name);
+    messageDiv.appendChild(document.createElement("br"));
+    messageDiv.appendChild(p_message);
+    externDiv.appendChild(messageDiv);
+    document.getElementById("message_box").appendChild(externDiv);
 }
 
 function update_online_users(users_list) {
@@ -58,18 +58,28 @@ function update_online_users(users_list) {
         select_block.removeChild(select_block.lastChild);
     //insert new list
     document.getElementById("placeholder").setAttribute("selected", "true");
+    var all_users_list = document.getElementsByClassName("chatbox_user");
+    for(var i = 0; i < all_users_list; i++){
+        if(all_users_list[i].classList.contains("chatbox__user--active")){
+            all_users_list[i].classList.remove("chatbox__user--active");
+        }
+        all_users_list[i].classList.add("chatbox__user--busy");
+    }
     var option;
     var option_text;
     for(var i = 0; i < users_list.length - 1; ++i){
         if(users_list[i] === username)
-		continue;	//the logged user can not send a message to himself!
-	option = document.createElement("option");
+            continue;	//the logged user can not send a message to himself!
+        option = document.createElement("option");
         option.setAttribute("id", users_list[i]);
         option.setAttribute("value", users_list[i]);
         option.setAttribute("class", "online_user");
         option_text = document.createTextNode(users_list[i]);
         option.append(option_text);
         select_block.append(option);
+        //update online users in the list of all the users
+        document.getElementById(users_list[i]).classList.remove("chatbox__user--busy");
+        document.getElementById(users_list[i]).classList.remove("chatbox__user--active");
     }
 }
 
@@ -103,7 +113,7 @@ function ws_onMessage(event) {
     } else {
         message_fields = event.data.split('|');
         if(message_fields.length > 1){
-	    //the new online users list is arrived
+            //the new online users list is arrived
             update_online_users(message_fields);
         } else {
             // semplice stringa di risposta
@@ -114,7 +124,7 @@ function ws_onMessage(event) {
 
 //logging_user is the username of the user that is entering in the chat page
 function connect(logging_user){
-	//alert(logging_user);
+    //alert(logging_user);
     username = logging_user;
     websocket = new WebSocket(server_url);
     websocket.onopen = function(){ws_onOpen()};
@@ -127,10 +137,16 @@ function disconnect(){
     websocket.close();
 }
 
-function send_message(){
-    const message_text = document.getElementById("typed_message").value;
+function send_message(event){
+    var keycode = event.keyCode;
+    if(keycode != 13){
+        return true;
+    }
+    var message_text = document.getElementById("text_input").value;
     const receiver_index = document.getElementById("select_receiver").selectedIndex;
     const receiver_username = document.getElementById("select_receiver").options[receiver_index].value;
     websocket.send(message_text + ":" + username + ":" + receiver_username);
     print_message(null, message_text, receiver_username);
+    document.getElementById("text_input").value = "";
+    return false;
 }

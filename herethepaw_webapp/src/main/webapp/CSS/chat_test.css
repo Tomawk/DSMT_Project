@@ -10,6 +10,12 @@ html, body {
   overflow: hidden;
 }
 
+#message_box{
+  overflow-y: auto;
+  height: 93%;
+  width: 70%;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -26,16 +32,16 @@ html, body {
 
 .chatbox {
   background: rgba(255, 255, 255, 0.05);
-  width: 600px;
+  width: 60%;
   height: 75%;
   border-radius: 0.2em;
   position: relative;
   box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.1);
 }
 .chatbox__messages .chatbox__messages__user-message--left-message {
-  float: right;
+  float: left;
 }
-.chatbox__messages .chatbox__messages__user-message--left-message:after {
+/*.chatbox__messages .chatbox__messages__user-message--left-message:after {
   content: "";
   position: absolute;
   margin: -1.5em -17.06em;
@@ -44,11 +50,11 @@ html, body {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-right: 10px solid rgba(255, 255, 255, 0.2);
-}
+}*/
 .chatbox__messages .chatbox__messages__user-message--right-message {
-  float: left;
+  float: right;
 }
-.chatbox__messages .chatbox__messages__user-message--right-message:after {
+/*.chatbox__messages .chatbox__messages__user-message--right-message:after {
   content: "";
   position: absolute;
   margin: -1.5em 1.87em;
@@ -57,9 +63,9 @@ html, body {
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid rgba(255, 255, 255, 0.2);
-}
+}*/
 .chatbox__messages__user-message {
-  width: 450px;
+  width: 100%;
 }
 .chatbox__messages__user-message--left-message {
   background: rgba(255, 255, 255, 0.2);
