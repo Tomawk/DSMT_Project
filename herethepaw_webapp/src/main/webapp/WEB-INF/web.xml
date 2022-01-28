@@ -35,6 +35,12 @@
     </servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>ChatServlet</servlet-name>
+    <servlet-class>
+      it.unipi.dsmt.servlet.ChatServlet
+    </servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>NewReviewServlet</servlet-name>
     <servlet-class>
       it.unipi.dsmt.servlet.NewReviewServlet
@@ -69,6 +75,10 @@
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ChatServlet</servlet-name>
+    <url-pattern>/chat</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>NewReviewServlet</servlet-name>

@@ -74,6 +74,28 @@ public class UserRemoteEJB implements UserRemote {
     }
 
     @Override
+    public ArrayList<UserDTO> getAllUserList() throws SQLException{
+        ArrayList<UserDTO> returned_list = new ArrayList<UserDTO>();
+        Connection con = dataSource.getConnection();
+        Statement stms = con.createStatement();
+        ResultSet rs = stms.executeQuery("select * from users");
+        while (rs.next()){
+            ArrayList<String> pets = new ArrayList<String>();
+            String user_id = rs.getString(1);
+            if(rs.getBoolean(2)) pets.add("dog");
+            if(rs.getBoolean(3)) pets.add("cat");
+            if(rs.getBoolean(4)) pets.add("rabbit");
+            if(rs.getBoolean(5)) pets.add("hamster");
+            Users user = entityManager.find(Users.class,user_id);
+            UserDTO userDTO = new UserDTO(user.getUser_id(),user.getName(),user.getSurname(),user.getUsername(),
+                    user.getEmail(),user.getCity(),user.getPostal_code(),user.getDescription(),pets,user.getPassword(),user.getPetsitter(),user.getMale());
+            returned_list.add(userDTO);
+        }
+        con.close();
+        return  returned_list;
+    }
+
+    @Override
     public void loginUser(String username, String password) throws SQLException {
         Users user = null;
 

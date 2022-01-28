@@ -9,6 +9,9 @@ import java.util.ArrayList;
 @Remote
 public interface UserRemote {
     public ArrayList<UserDTO> getUserList(String city, String pet) throws SQLException;
+
+    ArrayList<UserDTO> getAllUserList() throws SQLException;
+
     public void loginUser(String username, String password) throws SQLException;
     public UserDTO getUser(String username) throws SQLException;
     UserDTO getLogged_user();

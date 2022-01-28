@@ -33,6 +33,7 @@
 <table>
     <tr>
         <td><a href="/herethepaw_webapp">Home</a></td>
+        <td><a href="/herethepaw_webapp/ChatServlet">Chat</a></td>
         <td><a href="/herethepaw_webapp/UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
         <td><a href="/herethepaw_webapp/logout">Logout</a></td>
     </tr>
