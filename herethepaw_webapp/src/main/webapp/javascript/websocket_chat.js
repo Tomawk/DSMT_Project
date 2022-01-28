@@ -21,23 +21,28 @@ function print_message(sender_name, message, receiver = null) {
         "/" + data.getFullYear();
     var externDiv = document.createElement("div");
     externDiv.setAttribute("class", "chatbox__messages__user-message");
+    externDiv.style.backgroundColor = "orange";
+    externDiv.style.background = "orange";
     var messageDiv = document.createElement("div");
     var p_name = document.createElement("p");
     var p_name_text;
     var p_message = document.createElement("p");
     var p_message_text;
     if(receiver != null) {
+        //messaggio inviato
         messageDiv.setAttribute("class", "chatbox__messages__user-message--right-message");
         p_name_text = document.createTextNode("Sent to " + receiver + ":");
         p_message_text = document.createTextNode(message);
     } else {
-        messageDiv.setAttribute("class", "chatbox__messages__user-message--left-message");
+        //messaggio in arrivo
         if (sender_name == null) {
             // messaggio inviato dal server
+            messageDiv.setAttribute("class", "chatbox__messages__user-message--server-message");
             p_name_text = document.createTextNode("From: System");
             p_message_text = document.createTextNode(message);
         } else {
             // messaggio da un altro utente
+            messageDiv.setAttribute("class", "chatbox__messages__user-message--left-message");
             p_name_text = document.createTextNode("From: " + sender_name);
             p_message_text = document.createTextNode(message);
         }
@@ -58,7 +63,7 @@ function update_online_users(users_list) {
         select_block.removeChild(select_block.lastChild);
     //insert new list
     document.getElementById("placeholder").selected = "selected";
-    var all_users_list = document.getElementsByName("chatbox_user")
+    var all_users_list = document.getElementsByName("chatbox_user");
     for(var i = 0; i < all_users_list.length; i++){
         all_users_list[i].setAttribute("class", "chatbox__user--busy");
     }
@@ -141,6 +146,12 @@ function send_message(event){
     var message_text = document.getElementById("text_input").value;
     const receiver_index = document.getElementById("select_receiver").selectedIndex;
     const receiver_username = document.getElementById("select_receiver").options[receiver_index].value;
+    if(receiver_username == "choose-one") {
+        //the user has not selected a receiver
+        print_message(null, "You must select a receiver!", null);
+        document.getElementById("text_input").value = "";
+        return false;
+    }
     websocket.send(message_text + ":" + username + ":" + receiver_username);
     print_message(null, message_text, receiver_username);
     document.getElementById("text_input").value = "";

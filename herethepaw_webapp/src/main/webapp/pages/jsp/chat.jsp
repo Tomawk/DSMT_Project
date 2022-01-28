@@ -32,8 +32,8 @@
                 <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
                 <% if(userRemoteEJB.getLogged_user() != null) { %>
                 <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
-                <td><a href="">Logout</a></td>
-                <td><a href="">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
+                <td><a href="logout">Logout</a></td>
+                <td><a href="book_petsitter">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
                 <% } else { %>
                 <td><a href="">Login</a></td>
                 <% } %>
