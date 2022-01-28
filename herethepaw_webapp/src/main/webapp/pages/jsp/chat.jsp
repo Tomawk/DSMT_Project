@@ -3,6 +3,8 @@
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="javax.naming.NamingException" %>
 <%@ page import="java.net.InetAddress" %>
+<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
+<%@ page import="java.util.List" %>
 <%
     UserRemote userRemoteEJB = null;
     try {
@@ -11,6 +13,7 @@
         e.printStackTrace();
     }
     String actual_ip = InetAddress.getLocalHost().getHostAddress();
+    List<UserDTO> userList = userRemoteEJB.getAllUserList();
 %>
 <html>
     <head>
@@ -49,18 +52,69 @@
             </tr>
         </table>
     </aside>
-        <div id = "container">
-            <div id = "message_area"></div>
-            <div>
-                <label for="select_receiver">Select the online user to send the message to:</label>
-                <select name="select_receiver" id="select_receiver">
-                    <option value="choose-one" data-placeholder="true" id = "placeholder" disabled selected>Choose one...</option>
-                </select>
+    <div class='container'>
+        <h1>HereThePaw Chatbox&nbsp;<i class="far fa-comments"></i></h1>
+        <div class='chatbox'>
+            <div class='chatbox__user-list' id = "user_list">
+                <h1>User list</h1>
+                <!-- Lista utenti dove andare ad inserire i nomi di tutti o di quelli online
+                     se vuoi solo gli utenti online usa il div con --active che ti compare il bollino verde
+                     altrimenti se decidi di metterli entrambi puoi usare anche il bollino rosso usando --busy
+                     -->
+                <%
+                    for(UserDTO item: userList){
+                        if(item.getUsername().equals(userRemoteEJB.getLogged_user().getUsername()))
+                            continue;
+                %>
+                <div class = "chatbox_user" class = 'chatbox__user--busy' id = "<%=item.getUsername()%>">
+                    <p><%=item.getUsername()%></p>
+                </div>
+                <%
+                    }
+                %>
+                <!--<div class='chatbox__user--active'>
+                    <p>Jack Thomson</p>
+                </div>
+                <div class='chatbox__user--busy'>
+                    <p>Angelina Jolie</p>
+                </div>
+                <div class='chatbox__user--active'>
+                    <p>George Clooney</p>
+                </div>
+                <div class='chatbox__user--active'>
+                    <p>Seth Rogen</p>
+                </div>
+                <div class='chatbox__user--away'>
+                    <p>John Lydon</p>
+                </div> -->
+                <div id = "select">
+                    <select name="select_receiver" id="select_receiver">
+                        <option value="choose-one" data-placeholder="true" id = "placeholder" disabled selected>Choose one...</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <textarea placeholder = "Type your message here" type = "text" id = "typed_message"></textarea>
-                <button onclick = "send_message()" type = "submit">Send Message</button>
+            <div class="chatbox__messages" id = "message_box">
+                <!-- <div class="chatbox__messages__user-message">
+                    <div class="chatbox__messages__user-message--right-message">
+                        <p class="name">{{message.Name1}}</p>
+                        <br/>
+                        <p class="message">{{message.Message1}}</p>
+                    </div>
+                </div>
+                <div class="chatbox__messages__user-message">
+                    <div class="chatbox__messages__user-message--left-message">
+                        A seconda se vuoi che il messaggio venga da destra o da sinistra devi usare l'apposito div con
+                              --left-message se vuoi che venga da sinistra, --right-message se vuoi che venga da destra -->
+                <!-- <p class="name">{{message.Name1}}</p>
+                <br/>
+                <p class="message">{{message.Message1}}</p>
             </div>
+        </div>-->
+            </div>
+            <form onsubmit = "return false;">
+                <input type="text" placeholder="Enter your message" id = "text_input" onkeypress = "return send_message(event);">
+            </form>
         </div>
+    </div>
     </body>
 </html>
