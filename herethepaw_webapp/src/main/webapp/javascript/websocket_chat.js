@@ -6,7 +6,7 @@ const PING = "&PING";
 
 var username = "";
 
-const server_url = "ws://localhost:3307";
+const server_url = "ws://172.18.0.25:3307";
 
 var id_timer = null;
 
