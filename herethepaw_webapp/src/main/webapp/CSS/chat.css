@@ -1,23 +1,4 @@
-/*
-#container{
-    height: 90%;
-    width: 80%;
-    position: relative;
-    left: 10%;
-    top: 5%;
-}
 
-#message_area{
-    height: 90%;
-    width: 40%;
-    position: relative;
-    left: 5%;
-    top: 5%;
-    overflow: auto;
-    box-shadow: -2px 8px 14px 4px #7EC3FF;
-    border-top: 2px solid black;
-}
-*/
 
 .topnav{
     position: fixed;
@@ -144,4 +125,14 @@
     background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center;
+}
+
+.container {
+    position: relative;
+    top: -4vw;
+}
+
+.container #first_h1{
+    position: relative;
+    top: 3vw;
 }

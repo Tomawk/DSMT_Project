@@ -10,14 +10,18 @@
     <link href="fontawesome/css/all.css" rel="stylesheet"> 
 </head>
 <body>
+<% UserRemote userRemoteEJB = new UserRemoteEJB(); %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
-    <table>
+    <% if(userRemoteEJB.getLogged_user() == null){ %>
+    <table style="position:relative; left:80vw;">
+        <% } else {%>
+            <table style="position:relative; left:62vw;">
+                <% } %>
         <tr>
             <td><a onclick="scrollup()">Home</a></td>
 
             <%
-                UserRemote userRemoteEJB = new UserRemoteEJB();
                 if(userRemoteEJB.getLogged_user() != null){ %>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>

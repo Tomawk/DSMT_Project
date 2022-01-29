@@ -12,7 +12,7 @@
 <body>
 <nav class="topnav">
     <img src="../../images/HereThePaw_Logo.png" alt="logo">
-    <table>
+    <table style="position:relative; left:80vw;">
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
             <td><a href="#hr1">Login</a></td>

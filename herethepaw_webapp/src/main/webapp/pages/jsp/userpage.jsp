@@ -34,7 +34,11 @@
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
-    <table>
+    <% if(userRemoteEJB.getLogged_user() == null){ %>
+    <table style="position:relative; left:80vw;">
+            <% } else {%>
+        <table style="position:relative; left:62vw;">
+            <% } %>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
             <% if(userRemoteEJB.getLogged_user() != null) { %>

@@ -20,7 +20,6 @@
         <title>HereThePaw Chat</title>
         <link href = "CSS/chat_test.css" rel = "stylesheet" type = "text/css">
         <link href = "CSS/chat.css" rel = "stylesheet" type = "text/css">
-        <link href="CSS/index.css" rel="stylesheet" type="text/css">
         <link href="fontawesome/css/all.css" rel="stylesheet">
         <script type="text/javascript" src="javascript/websocket_chat.js"></script>
     </head>
@@ -33,7 +32,7 @@
                 <% if(userRemoteEJB.getLogged_user() != null) { %>
                 <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
-                <td><a href="book_petsitter">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
+                <td><a href="/herethepaw_webapp/pages/jsp/requests.jsp">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
                 <% } else { %>
                 <td><a href="">Login</a></td>
                 <% } %>
@@ -54,7 +53,7 @@
         </table>
     </aside>
     <div class='container'>
-        <h1>HereThePaw Chatbox&nbsp;<i class="far fa-comments"></i></h1>
+        <h1 id="first_h1">HereThePaw Chatbox&nbsp;<i class="far fa-comments"></i></h1>
         <div class='chatbox'>
             <div class='chatbox__user-list' id = "user_list">
                 <h1>User list</h1>
