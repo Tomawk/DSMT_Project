@@ -36,16 +36,16 @@ public class BookingRemoteEJB implements BookingRemote{
 
     @Override
     public void insertPendingBooking(String ps_id,String ps_us,String po_id, String po_us, String from, String to,String pet_str) throws SQLException {
-
         Connection con = dataSource.getConnection();
         Statement stmt = con.createStatement();
         stmt.executeUpdate("INSERT INTO booking (petowner_id,petowner_username, petsitter_id, petsitter_username, from_date, to_date, pet,status)\n" +
-                "VALUES (" +"'" + po_id + "'," + "'" + po_us + "'," + "'" + ps_id  + "'," +"'" + ps_us + "',"+ "'" + from + "'," + "'" + to + "'," + "'" +  pet_str + "'," + "'pending');");
+                "VALUES (" + "'" + po_id + "'," + "'" + po_us + "'," + "'" + ps_id + "'," + "'" + ps_us + "'," + "'" + from + "'," + "'" + to + "'," + "'" + pet_str + "'," + "'pending');");
+
         con.close();
     }
 
     @Override
-    public ArrayList<BookingDTO> displayBooking(String username, boolean petsitter, boolean pending) throws SQLException {
+    public ArrayList<BookingDTO> displayBooking(String username, boolean petsitter, boolean pending) {
         String petowner_us = null;
         String petsitter_us = null;
         if(petsitter)  petsitter_us = username;
@@ -118,7 +118,7 @@ public class BookingRemoteEJB implements BookingRemote{
     }
 
     @Override
-    public boolean searchBooking(String owner, String petSitter) throws SQLException{
+    public boolean searchBooking(String owner, String petSitter) {
         List<Booking> confirmedBookings = entityManager.createQuery(
                         "SELECT u from Booking u WHERE u.po_id = :id_o AND u.ps_id = :id_p", Booking.class).
                 setParameter("id_o", owner).setParameter("id_p", petSitter).getResultList();
