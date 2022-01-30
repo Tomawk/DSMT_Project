@@ -33,7 +33,7 @@ public class ReviewRemoteEJB implements ReviewRemote {
         entityManager = emf.createEntityManager();
     }
 
-    public ArrayList<ReviewDTO> getPetSitterReviewList(String petSitter) throws SQLException {
+    public ArrayList<ReviewDTO> getPetSitterReviewList(String petSitter) {
         ArrayList<ReviewDTO> returned_list = new ArrayList<ReviewDTO>();
         Users user = entityManager.createQuery(
                 "SELECT u from Users u WHERE u.username = :username", Users.class).
