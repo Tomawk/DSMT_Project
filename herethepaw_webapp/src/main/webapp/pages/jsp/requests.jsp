@@ -41,7 +41,7 @@
     } catch (SQLException e) {
         e.printStackTrace();
     }
-    InetAddress actual_ip = InetAddress.getLocalHost();
+    String actual_ip = InetAddress.getLocalHost().getHostAddress();
 %>
 <nav class="topnav">
 <img src="../../images/HereThePaw_Logo.png" alt="logo">
@@ -85,7 +85,7 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <strong>Pet&nbsp;<i class="fas fa-paw"></i>:&nbsp;</strong><%=item.getPet()%>
             <% if(((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
-            <form method="post" action="http://" + <%= actual_ip.toString()%> +":8080/herethepaw_webapp/confirm_booking">
+            <form method="post" action="http://<%=actual_ip%>:8080/herethepaw_webapp/confirm_booking">
                 <input type="hidden" name="booking_id" value="<%=item.getBooking_id()%>">
                 <button id="accept_btn" name="accept_btn" type="submit"> Accept </button>
                 <button id="decline_btn" name="decline_btn" type="submit"> Decline </button>

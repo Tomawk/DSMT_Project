@@ -29,11 +29,6 @@
     UserRemote userRemoteEJB = null;
     BookingRemote bookingRemoteEJB = null;
     UserDTO target_user = null;
-    try {
-        target_user = userRemoteEJB.getUser(requested_user);
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
     ReviewRemote reviewRemoteEJB = null;
     try {
         userRemoteEJB = new UserRemoteEJB();
@@ -44,6 +39,7 @@
     }
     ArrayList<ReviewDTO> user_reviews = null;
     try {
+        target_user = userRemoteEJB.getUser(requested_user);
         user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
     } catch (SQLException e) {
         e.printStackTrace();
@@ -174,7 +170,7 @@
 <% } %>
 
 
-<% if(((UserDTO)session.getAttribute("logged_user")) != null && target_user.isPetsitter() && !((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
+<% if((session.getAttribute("logged_user")) != null && target_user.isPetsitter() && !((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
     <!-- User is Logged & target == petsitter - Calendar should be displayed otherwise not -->
 
     <h1 id="calendar_h1">Book this pet sitter &nbsp;<i class="far fa-handshake"></i></h1>
