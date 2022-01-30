@@ -13,16 +13,10 @@ var id_timer = null;
 // UTILITY
 
 function print_message(sender_name, message, receiver = null) {
-    const data = new Date();
-    const string_date = data.getMinutes() + "" +
-        ":" + data.getHours() + "" +
-        " " + data.getDay() + "" +
-        "/" + data.getMonth() + "" +
-        "/" + data.getFullYear();
     var externDiv = document.createElement("div");
     externDiv.setAttribute("class", "chatbox__messages__user-message");
-    externDiv.style.backgroundColor = "orange";
-    externDiv.style.background = "orange";
+    //externDiv.style.backgroundColor = "orange";
+    //externDiv.style.background = "orange";
     var messageDiv = document.createElement("div");
     var p_name = document.createElement("p");
     var p_name_text;
@@ -57,7 +51,6 @@ function print_message(sender_name, message, receiver = null) {
 }
 
 function update_online_users(users_list) {
-    //flush of all the options
     const receiver_index = document.getElementById("select_receiver").selectedIndex;
     const previous_selected = document.getElementById("select_receiver").options[receiver_index].value;
     var previous_selected_is_online = false;
@@ -134,7 +127,6 @@ function ws_onMessage(event) {
 
 //logging_user is the username of the user that is entering in the chat page
 function connect(logging_user){
-    //alert(logging_user);
     username = logging_user;
     websocket = new WebSocket(server_url);
     websocket.onopen = function(){ws_onOpen()};
@@ -145,6 +137,7 @@ function connect(logging_user){
 function disconnect(){
     websocket.send(LOGOUT);
     websocket.close();
+    stop_keep_alive();
 }
 
 function send_message(event){
