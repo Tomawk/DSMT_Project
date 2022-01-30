@@ -5,6 +5,8 @@
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="it.unipi.dsmt.interfaces.ReviewRemote" %>
 <%@ page import="java.net.InetAddress" %>
+<%@ page import="javax.naming.NamingException" %>
+<%@ page import="java.sql.SQLException" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -19,25 +21,40 @@
 <%
         String city_searched = request.getParameter("city");
         String pet_searched = request.getParameter("pet");
-        UserRemote userRemoteEJB = new UserRemoteEJB();
-        ArrayList<UserDTO> filtered_list = userRemoteEJB.getUserList(city_searched,pet_searched);
-        if(city_searched.equals(""))
+    UserRemote userRemoteEJB = null;
+    try {
+        userRemoteEJB = new UserRemoteEJB();
+    } catch (NamingException e) {
+        e.printStackTrace();
+    }
+    ArrayList<UserDTO> filtered_list = null;
+    try {
+        filtered_list = userRemoteEJB.getUserList(city_searched,pet_searched);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    if(city_searched.equals(""))
             city_searched = "All";
-    ReviewRemote reviewRemoteEJB = new ReviewRemoteEJB();
+    ReviewRemote reviewRemoteEJB = null;
+    try {
+        reviewRemoteEJB = new ReviewRemoteEJB();
+    } catch (NamingException e) {
+        e.printStackTrace();
+    }
     float avgRating = 0;
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
-    <% if(userRemoteEJB.getLogged_user() == null){ %>
+    <% if((session.getAttribute("logged_user")) == null){ %>
     <table style="position:relative; left:80vw;">
             <% } else {%>
         <table style="position:relative; left:62vw;">
             <% } %>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(userRemoteEJB.getLogged_user() != null) { %>
+            <% if((session.getAttribute("logged_user")) != null) { %>
                 <td><a href="chat">Chat</a></td>
-                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+                <td><a href="UserListServlet?username=<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
                 <td><a href="pages/jsp/requests.jsp">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
             <% } else { %>

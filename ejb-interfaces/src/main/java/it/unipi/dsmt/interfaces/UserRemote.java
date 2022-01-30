@@ -12,9 +12,9 @@ public interface UserRemote {
 
     ArrayList<UserDTO> getAllUserList() throws SQLException;
 
-    public void loginUser(String username, String password) throws SQLException;
+    public UserDTO loginUser(String username, String password) throws SQLException;
     public UserDTO getUser(String username) throws SQLException;
-    UserDTO getLogged_user();
+    //UserDTO getLogged_user();
 
-    void setLogged_user(UserDTO logged_user);
+    //void setLogged_user(UserDTO logged_user);
 }

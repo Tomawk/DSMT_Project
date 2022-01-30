@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class UserRemoteEJB implements UserRemote {
 
     private static DataSource dataSource = null;
-    private static UserDTO logged_user = null;
+    //private static UserDTO logged_user = null;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -96,7 +96,7 @@ public class UserRemoteEJB implements UserRemote {
     }
 
     @Override
-    public void loginUser(String username, String password) throws SQLException {
+    public UserDTO loginUser(String username, String password) throws SQLException {
         Users user = null;
 
         try{
@@ -104,7 +104,7 @@ public class UserRemoteEJB implements UserRemote {
                     "SELECT u from Users u WHERE u.username = :username", Users.class).
                     setParameter("username", username).getSingleResult();
         } catch (NoResultException e){
-            return;
+            return null;
         }
 
         if(user.getPassword().equals(password)){
@@ -118,11 +118,12 @@ public class UserRemoteEJB implements UserRemote {
                 if(rs.getBoolean(4)) pets.add("rabbit");
                 if(rs.getBoolean(5)) pets.add("hamster");
             }
-            logged_user = new UserDTO(user.getUser_id(),user.getName(),user.getSurname(),user.getUsername(),
+            UserDTO logged_user = new UserDTO(user.getUser_id(),user.getName(),user.getSurname(),user.getUsername(),
                     user.getEmail(),user.getCity(),user.getPostal_code(),user.getDescription(),pets,user.getPassword(),user.getPetsitter(),user.getMale());
-        } else return;
+            return logged_user;
+        } else return null;
     }
-
+    /*
     @Override
     public UserDTO getLogged_user() {
         return logged_user;
@@ -131,5 +132,5 @@ public class UserRemoteEJB implements UserRemote {
     @Override
     public void setLogged_user(UserDTO logged_user) {
         UserRemoteEJB.logged_user = logged_user;
-    }
+    }*/
 }

@@ -1,7 +1,8 @@
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
 <%@ page import="javax.naming.NamingException" %>
-<%@ page import="java.net.InetAddress" %><%--
+<%@ page import="java.net.InetAddress" %>
+<%@ page import="it.unipi.dsmt.dto.UserDTO" %><%--
   Created by IntelliJ IDEA.
   User: Tommy
   Date: 27/01/2022
@@ -26,14 +27,14 @@
     <link href="../../CSS/chat_test.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="../../javascript/websocket_chat.js"></script>
 </head>
-<body onload="connect('<%=userRemoteEJB.getLogged_user().getUsername()%>')" onunload="disconnect()">
+<body onload="connect('<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>')" onunload="disconnect()">
 <nav class="topnav">
     <img src="../../images/HereThePaw_Logo.png" alt="logo">
     <table>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(userRemoteEJB.getLogged_user() != null) { %>
-            <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <% if((session.getAttribute("logged_user")) != null) { %>
+            <td><a href="UserListServlet?username=<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%></a></td>
             <td><a href="">Logout</a></td>
             <td><a href="">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
             <% } else { %>

@@ -1,5 +1,8 @@
 <%@ page import="it.unipi.dsmt.ejb.UserRemoteEJB" %>
 <%@ page import="it.unipi.dsmt.interfaces.UserRemote" %>
+<%@ page import="it.unipi.dsmt.ejb.entities.Users"%>
+<%@ page import="it.unipi.dsmt.dto.UserDTO"%>
+<%@ page import="javax.naming.NamingException" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,10 +13,14 @@
     <link href="fontawesome/css/all.css" rel="stylesheet"> 
 </head>
 <body>
-<% UserRemote userRemoteEJB = new UserRemoteEJB(); %>
+<% try {
+    UserRemote userRemoteEJB = new UserRemoteEJB();
+} catch (NamingException e) {
+    e.printStackTrace();
+}%>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
-    <% if(userRemoteEJB.getLogged_user() == null){ %>
+    <% if(session.getAttribute("logged_user") == null){ %>
     <table style="position:relative; left:80vw;">
         <% } else {%>
             <table style="position:relative; left:62vw;">
@@ -22,9 +29,9 @@
             <td><a onclick="scrollup()">Home</a></td>
 
             <%
-                if(userRemoteEJB.getLogged_user() != null){ %>
+                if(session.getAttribute("logged_user") != null){ %>
                 <td><a href="chat">Chat</a></td>
-                <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+                <td><a href="UserListServlet?username=<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%></a></td>
                 <td><a href="logout">Logout</a></td>
                 <td><a href="pages/jsp/requests.jsp">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
             <% } else {%>

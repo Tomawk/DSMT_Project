@@ -15,15 +15,6 @@ import java.io.IOException;
 @WebServlet(name = "LogoutServlet",value="/logout")
 public class LogoutServlet extends HttpServlet {
 
-    private UserRemote userRemoteEJB;
-    {
-        try {
-            userRemoteEJB = new UserRemoteEJB();
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-    }
-
     public LogoutServlet() throws NamingException {
     }
 
@@ -32,7 +23,9 @@ public class LogoutServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        userRemoteEJB.setLogged_user(null);
+        HttpSession session = request.getSession();
+        session.invalidate();
+        //userRemoteEJB.setLogged_user(null);
         response.sendRedirect(request.getContextPath()+"/index.jsp");
     }
 }

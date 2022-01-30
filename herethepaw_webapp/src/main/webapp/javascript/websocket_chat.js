@@ -149,7 +149,7 @@ function send_message(event){
     if(receiver_username == "choose-one") {
         //the user has not selected a receiver
         print_message(null, "You must select a receiver!", null);
-        document.getElementById("text_input").value = "";
+        //document.getElementById("text_input").value = "";
         return false;
     }
     if(message_text == ""){

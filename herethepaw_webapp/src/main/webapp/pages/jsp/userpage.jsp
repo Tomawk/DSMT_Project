@@ -8,6 +8,8 @@
 <%@ page import="java.net.InetAddress" %>
 <%@ page import="it.unipi.dsmt.interfaces.BookingRemote" %>
 <%@ page import="it.unipi.dsmt.ejb.BookingRemoteEJB" %>
+<%@ page import="javax.naming.NamingException" %>
+<%@ page import="java.sql.SQLException" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,26 +26,43 @@
 <body>
 <%
     String requested_user = request.getParameter("username");
-    UserRemote userRemoteEJB = new UserRemoteEJB();
-    BookingRemote bookingRemoteEJB = new BookingRemoteEJB();
-    UserDTO target_user = userRemoteEJB.getUser(requested_user);
-    ReviewRemote reviewRemoteEJB = new ReviewRemoteEJB();
-    ArrayList<ReviewDTO> user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
+    UserRemote userRemoteEJB = null;
+    BookingRemote bookingRemoteEJB = null;
+    UserDTO target_user = null;
+    try {
+        target_user = userRemoteEJB.getUser(requested_user);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    ReviewRemote reviewRemoteEJB = null;
+    try {
+        userRemoteEJB = new UserRemoteEJB();
+        bookingRemoteEJB = new BookingRemoteEJB();
+        reviewRemoteEJB = new ReviewRemoteEJB();
+    } catch (NamingException e) {
+        e.printStackTrace();
+    }
+    ArrayList<ReviewDTO> user_reviews = null;
+    try {
+        user_reviews = reviewRemoteEJB.getPetSitterReviewList(requested_user);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
     String actual_ip = InetAddress.getLocalHost().getHostAddress();
-    UserDTO logged_user = userRemoteEJB.getLogged_user();
+    UserDTO logged_user = (UserDTO)session.getAttribute("logged_user");
 %>
 <nav class="topnav">
     <img src="images/HereThePaw_Logo.png" alt="logo">
-    <% if(userRemoteEJB.getLogged_user() == null){ %>
+    <% if((session.getAttribute("logged_user")) == null){ %>
     <table style="position:relative; left:80vw;">
             <% } else {%>
         <table style="position:relative; left:62vw;">
             <% } %>
         <tr>
             <td><a href="/herethepaw_webapp">Home</a></td> <!-- TODO CHANGE PATH IF REQUIRED -->
-            <% if(userRemoteEJB.getLogged_user() != null) { %>
+            <% if((session.getAttribute("logged_user")) != null) { %>
             <td><a href="chat">Chat</a></td>
-            <td><a href="UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+            <td><a href="UserListServlet?username=<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%></a></td>
             <td><a href="logout">Logout</a></td>
             <td><a href="pages/jsp/requests.jsp">Booking&nbsp;<i class="far fa-bookmark"></i></a></td>
             <% } else { %>
@@ -118,7 +137,7 @@
                             <% if(bookingRemoteEJB.searchBooking(logged_user.getUser_id(), target_user.getUser_id())) { %>
                                 <form method="post" onsubmit="return check_review_field()" id="review" action="http://<%= actual_ip%>:8080/herethepaw_webapp/new_review"> <!-- TODO CHANGE PATH IF REQUIRED -->
                                     <textarea type="text" name="review" class="input" placeholder="Write a review"></textarea>
-                                    <input type="hidden" name="pet_owner" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+                                    <input type="hidden" name="pet_owner" value="<%=((UserDTO)session.getAttribute("logged_user")).getUser_id()%>">
                                     <input type="hidden" name="pet_sitter" value="<%=target_user.getUser_id()%>">
                                     <input type="hidden" name="pet_sitter_user" value="<%=target_user.getUsername()%>">
                                     <button class='primaryContained float-right' type="submit"> <strong>Add Review&nbsp;<i class="far fa-edit"></i></strong></button>
@@ -138,7 +157,7 @@
                                      <strong> Make a booking to be able to review</strong>
                                 <%}%>
                             <% }
-                            else if(userRemoteEJB.getLogged_user() == null){%>
+                            else if((session.getAttribute("logged_user")) == null){%>
                                 <form action="http://<%= actual_ip%>:8080/herethepaw_webapp/pages/jsp/login.jsp">
                                     <button type="submit" id="button_login_to_review" class='primaryContained float-right'> <strong>Login to review</strong></button>
                                 </form>
@@ -155,7 +174,7 @@
 <% } %>
 
 
-<% if(userRemoteEJB.getLogged_user() != null && target_user.isPetsitter() && !userRemoteEJB.getLogged_user().isPetsitter()) { %>
+<% if(((UserDTO)session.getAttribute("logged_user")) != null && target_user.isPetsitter() && !((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
     <!-- User is Logged & target == petsitter - Calendar should be displayed otherwise not -->
 
     <h1 id="calendar_h1">Book this pet sitter &nbsp;<i class="far fa-handshake"></i></h1>
@@ -169,10 +188,10 @@
     <div id="selected_pet">
         <p id="pet_info"> Please select your pet&nbsp;<i class="fas fa-arrow-circle-down"></i></p>
     <form method="post" id="book_form" action="http://<%=actual_ip%>:8080/herethepaw_webapp/book_petsitter">
-        <input type="hidden" name="pet_owner_id" value="<%=userRemoteEJB.getLogged_user().getUser_id()%>">
+        <input type="hidden" name="pet_owner_id" value="<%=((UserDTO)session.getAttribute("logged_user")).getUser_id()%>">
         <input type="hidden" name="pet_sitter_id" value="<%=target_user.getUser_id()%>">
         <input type="hidden" name="pet_sitter_us" value="<%=target_user.getUsername()%>">
-        <input type="hidden" name="pet_owner_us" value="<%=userRemoteEJB.getLogged_user().getUsername()%>">
+        <input type="hidden" name="pet_owner_us" value="<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>">
         <div class="box" id="box_pets">
         <select name="pets" id="pets">
             <% for(int i = 0; i<target_user.getPets().size(); i++) { %>

@@ -4,7 +4,10 @@
 <%@ page import="it.unipi.dsmt.ejb.BookingRemoteEJB" %>
 <%@ page import="it.unipi.dsmt.dto.BookingDTO" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.net.InetAddress" %><%--
+<%@ page import="java.net.InetAddress" %>
+<%@ page import="javax.naming.NamingException" %>
+<%@ page import="it.unipi.dsmt.dto.UserDTO" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Tommy
   Date: 24/01/2022
@@ -22,10 +25,22 @@
 </head>
 <body>
 <%
-    UserRemote userRemoteEJB = new UserRemoteEJB();
-    BookingRemote bookingRemoteEJB = new BookingRemoteEJB();
-    ArrayList<BookingDTO> pending_booking_list = bookingRemoteEJB.displayBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter(),true);
-    ArrayList<BookingDTO> confirmed_booking_list = bookingRemoteEJB.displayBooking(userRemoteEJB.getLogged_user().getUsername(),userRemoteEJB.getLogged_user().isPetsitter(),false);
+    UserRemote userRemoteEJB = null;
+    BookingRemote bookingRemoteEJB = null;
+    try {
+        userRemoteEJB = new UserRemoteEJB();
+        bookingRemoteEJB = new BookingRemoteEJB();
+    } catch (NamingException e) {
+        e.printStackTrace();
+    }
+    ArrayList<BookingDTO> pending_booking_list = null;
+    ArrayList<BookingDTO> confirmed_booking_list = null;
+    try {
+        pending_booking_list = bookingRemoteEJB.displayBooking(((UserDTO)session.getAttribute("logged_user")).getUsername(),((UserDTO)session.getAttribute("logged_user")).isPetsitter(),true);
+        confirmed_booking_list = bookingRemoteEJB.displayBooking(((UserDTO)session.getAttribute("logged_user")).getUsername(),((UserDTO)session.getAttribute("logged_user")).isPetsitter(),false);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
     InetAddress actual_ip = InetAddress.getLocalHost();
 %>
 <nav class="topnav">
@@ -34,7 +49,7 @@
     <tr>
         <td><a href="/herethepaw_webapp">Home</a></td>
         <td><a href="/herethepaw_webapp/chat">Chat</a></td>
-        <td><a href="/herethepaw_webapp/UserListServlet?username=<%=userRemoteEJB.getLogged_user().getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=userRemoteEJB.getLogged_user().getUsername()%></a></td>
+        <td><a href="/herethepaw_webapp/UserListServlet?username=<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%>"><i class="fas fa-user"></i>&nbsp;<%=((UserDTO)session.getAttribute("logged_user")).getUsername()%></a></td>
         <td><a href="/herethepaw_webapp/logout">Logout</a></td>
     </tr>
 </table>
@@ -53,7 +68,7 @@
     </table>
 </aside>
 <div id="main_div">
-    <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
+    <% if(((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
     <h1>Pending Booking Requests Received:</h1>
     <% } else {%>
     <h1>Pending Booking Requests Sent:</h1>
@@ -69,7 +84,7 @@
             <strong style="color: dodgerblue;">To&nbsp;<i class="fas fa-calendar-check"></i>:&nbsp;</strong><%=item.getDate_to()%>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <strong>Pet&nbsp;<i class="fas fa-paw"></i>:&nbsp;</strong><%=item.getPet()%>
-            <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
+            <% if(((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
             <form method="post" action="http://" + <%= actual_ip.toString()%> +":8080/herethepaw_webapp/confirm_booking">
                 <input type="hidden" name="booking_id" value="<%=item.getBooking_id()%>">
                 <button id="accept_btn" name="accept_btn" type="submit"> Accept </button>
@@ -80,7 +95,7 @@
     <% } %>
 </div>
 <div id="secondary_div">
-    <% if(userRemoteEJB.getLogged_user().isPetsitter()) { %>
+    <% if(((UserDTO)session.getAttribute("logged_user")).isPetsitter()) { %>
         <h1>Confirmed Booking Requests Received:</h1>
     <% } else {%>
         <h1>Confirmed Booking Requests Sent:</h1>
