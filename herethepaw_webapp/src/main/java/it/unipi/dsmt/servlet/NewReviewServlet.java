@@ -1,8 +1,5 @@
 package it.unipi.dsmt.servlet;
-
-import it.unipi.dsmt.ejb.BookingRemoteEJB;
 import it.unipi.dsmt.ejb.ReviewRemoteEJB;
-import it.unipi.dsmt.interfaces.BookingRemote;
 import it.unipi.dsmt.interfaces.ReviewRemote;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;

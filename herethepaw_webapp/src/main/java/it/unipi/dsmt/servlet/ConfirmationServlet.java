@@ -1,12 +1,11 @@
 package it.unipi.dsmt.servlet;
 
-import it.unipi.dsmt.dto.BookingDTO;
 import it.unipi.dsmt.ejb.BookingRemoteEJB;
 import it.unipi.dsmt.interfaces.BookingRemote;
+
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-
 import javax.naming.NamingException;
 import java.io.IOException;
 import java.sql.SQLException;

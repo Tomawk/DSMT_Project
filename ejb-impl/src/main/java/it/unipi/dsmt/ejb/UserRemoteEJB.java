@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class UserRemoteEJB implements UserRemote {
 
     private static DataSource dataSource = null;
-    //private static UserDTO logged_user = null;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -123,14 +122,5 @@ public class UserRemoteEJB implements UserRemote {
             return logged_user;
         } else return null;
     }
-    /*
-    @Override
-    public UserDTO getLogged_user() {
-        return logged_user;
-    }
 
-    @Override
-    public void setLogged_user(UserDTO logged_user) {
-        UserRemoteEJB.logged_user = logged_user;
-    }*/
 }

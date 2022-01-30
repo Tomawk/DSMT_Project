@@ -1,14 +1,9 @@
 package it.unipi.dsmt.servlet;
 
-import it.unipi.dsmt.ejb.UserRemoteEJB;
-
-
-import it.unipi.dsmt.interfaces.UserRemote;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
-import javax.ejb.EJB;
 import javax.naming.NamingException;
 import java.io.IOException;
 

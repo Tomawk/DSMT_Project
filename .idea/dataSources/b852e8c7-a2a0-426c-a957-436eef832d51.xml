@@ -1082,25 +1082,25 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     <schema id="278" parent="1" name="sys">
       <Collation>utf8mb4_0900_ai_ci</Collation>
     </schema>
-    <user id="279" parent="1" name="debian-sys-maint">
+    <user id="279" parent="1" name="mysql.infoschema">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="280" parent="1" name="mysql.infoschema">
+    <user id="280" parent="1" name="mysql.session">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="281" parent="1" name="mysql.session">
+    <user id="281" parent="1" name="mysql.sys">
       <Host>localhost</Host>
       <Plugin>caching_sha2_password</Plugin>
     </user>
-    <user id="282" parent="1" name="mysql.sys">
-      <Host>localhost</Host>
-      <Plugin>caching_sha2_password</Plugin>
-    </user>
-    <user id="283" parent="1" name="root">
+    <user id="282" parent="1" name="root">
       <Host>localhost</Host>
       <Plugin>auth_socket</Plugin>
+    </user>
+    <user id="283" parent="1" name="debian-sys-maint">
+      <Host>localhost</Host>
+      <Plugin>caching_sha2_password</Plugin>
     </user>
     <user id="284" parent="1" name="test">
       <Host>localhost</Host>

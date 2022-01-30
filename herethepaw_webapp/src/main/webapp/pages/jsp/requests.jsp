@@ -25,10 +25,8 @@
 </head>
 <body>
 <%
-    UserRemote userRemoteEJB = null;
     BookingRemote bookingRemoteEJB = null;
     try {
-        userRemoteEJB = new UserRemoteEJB();
         bookingRemoteEJB = new BookingRemoteEJB();
     } catch (NamingException e) {
         e.printStackTrace();
