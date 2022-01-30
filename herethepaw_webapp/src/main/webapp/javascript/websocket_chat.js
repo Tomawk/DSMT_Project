@@ -58,11 +58,13 @@ function print_message(sender_name, message, receiver = null) {
 
 function update_online_users(users_list) {
     //flush of all the options
+    const receiver_index = document.getElementById("select_receiver").selectedIndex;
+    const previous_selected = document.getElementById("select_receiver").options[receiver_index].value;
+    var previous_selected_is_online = false;
     var select_block = document.getElementById("select_receiver");
     while(select_block.lastChild.id != select_block.firstChild.id)
         select_block.removeChild(select_block.lastChild);
     //insert new list
-    document.getElementById("placeholder").selected = "selected";
     var all_users_list = document.getElementsByName("chatbox_user");
     for(var i = 0; i < all_users_list.length; i++){
         all_users_list[i].setAttribute("class", "chatbox__user--busy");
@@ -76,12 +78,19 @@ function update_online_users(users_list) {
         option.setAttribute("id", users_list[i]);
         option.setAttribute("value", users_list[i]);
         option.setAttribute("class", "online_user");
+        if(previous_selected === users_list[i]){
+            // the selcted user is still online
+            option.selected = "selected";
+            previous_selected_is_online = true;
+        }
         option_text = document.createTextNode(users_list[i]);
         option.append(option_text);
         select_block.append(option);
         //update online users in the list of all the users
         document.getElementById(users_list[i]).setAttribute("class", "chatbox__user--active");
     }
+    if(!previous_selected_is_online)
+        document.getElementById("placeholder").selected = "selected";
 }
 
 // WEBSOCKET
