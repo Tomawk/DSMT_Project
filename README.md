@@ -12,7 +12,7 @@ HereThePaw is a webapp designed to combat the problem of pet abandonment. It’s
 
 ## Testing
 
-You can try this using the database inserted in the <em>/herethepaw_webapp/db</em> folder with the following users
+You can try this using the database inserted in the <em>/herethepaw_webapp/src/main/resources/db</em> folder with the following users
 
 * <strong>Username</strong>= Tomawk | <strong>Password</strong> = 123 (Pet owner)
 * <strong>Username</strong>= whitemario | <strong>Password</strong> = 123 (Pet sitter)
